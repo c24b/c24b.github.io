@@ -244,18 +244,107 @@
                     <br />
                     <br />
 					<small>Inspired by <a href="http://datapublica.github.io/scrapython/#/">DataPublica</a>: a special thanks to <a href="http://twitter.com/samuelcharron">@samuelcharron</a></small>
-					
-                    
                 </section>
                 <section>
-					FEW DEFINITION
+                    <h2>Webmining with Python</h2>
+                    <ul>
+                        <li><a href="#/2">Webmining?</a></li>
+                        <li><a href="#/3">Tools</a></li>
+                        <li><a href="#/4">A concrete example</a></li>
+                    </ul>
+                </section>
+                <section>
+                    <section>
+                        <h2>Webming?</h2>
+                        <h3>⇩</h3>
+                    </section>
+                    <section>
+						<h2>''Web'' mining?</h2>
+						<ul>
+						<li><a class='baseline' href="http://en.wikipedia.org/wiki/Web_mining">Webmining </a>is the application of <a href="http://en.wikipedia.org/wiki/Datamining">data mining</a> techniques to discover patterns from the Web</li>
+						<li>It's also a misused word to say collection data from the Web in order to constitute datasets</li>
+                        </ul>
+                    </section>
+                        <ul>
+                            <li>Create datasets from semi structured data</li>
+                            <li>Make enquiries and research on it</li>
+                            <li>Cross data and enhance knowledge</li>
+                            <li>Visualize it and spread the information</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Web Crawling <img src="img/spider.png"></h2>
+                        <ul>
+                            <li>Web: data not well structured</li>
+                            <li>Structure: text, links between pages, visuall structure</li>
+                            <li>Usage: reading, textual search engine, study of relationships</li>
+                            <li>No need to know the website: following the links blind</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Web Scraping</h2>
+                        <ul>
+                            <li>Hidden structure: mostly a database beside the website</li>
+                            <li>A page: one fragment of this database</li>
+                            <li>Rebuild a database from the entire websiter</li>
+                            <li>Usage: crossing  data, structured search engines, specific studies</li>
+                            <li>Absolute need to know the website: specific extraction</li>
+                        </ul>
+                    </section>
 				</section>
 				<section>
-					2 techniques
-				</section>
-				<section>
-					Tools presented
-				</section>
+                        <h2><span class='symbol'>⚒</span>Tools<span class='symbol'>⚒</span></h2>
+                        <table class='schema'>
+                            <tr>
+                                <td><span class='symbol top'>&#9729;</span>Internet</td>
+                                <td></td>
+                                <td><span class='symbol top'>⇅</span>téléchargement</td>
+                                <td></td>
+                                <td><span class='symbol left'>🔤</span>chaîne de caractères</td>
+                                <td></td>
+                                <td><span class='symbol left'>🌲 </span>document (DOM)</td>
+                                <td></td>
+                                <td><span class='symbol left'>🌲 </span>dataset</td>
+                            </tr>
+                            <tr>
+                                <td class='symbol'>&#x1f4c4;</td>
+                                <td>⇢</td>
+                                <td class='symbol'>⇅</td>
+                                <td>⇢</td>
+                                <td><pre>"&lt;html&gt;"</pre></td>
+                                <td>⇢</td>
+                                <td><pre>&lt;html&gt;<br>&nbsp;&nbsp;&lt;body&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;</pre></td>
+                                <td>⇢</td>
+                                <td><pre>&lt;html&gt;<br>&nbsp;&nbsp;&lt;body&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;</pre></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <ul>
+                                        <li><a href="#/4">Requests</a></li>
+                                    </ul>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <ul>
+                                        <li><a href="http://docs.python.org/library/re.html">Regular Expressions</a></li>
+                                        <li><a href="#/5">BeautifulSoup</a></li>
+                                        <li><a href="#/3">Lxml</a></li>
+                                    </ul>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <ul>
+										<li><a href="#/3/5">Firebug</a></li>
+                                        <li><a href="#/3/5">XPaths</a></li>
+                                        <li><a href="#/5/2">CSS Selectors</a></li>
+                                        <li><a href="#/5">BeautifulSoup</a></li>
+                                    </ul>
+                                </td>
+                        </table>
+                    </section>
+                </section>
 				<section>
 					Requests
 				</section>
