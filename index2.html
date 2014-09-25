@@ -1,0 +1,935 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Scrapython</title>
+
+        <meta name="author" content="Samuel Charron">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+        <script>
+            document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+
+        <style>
+
+            @font-face {
+                font-family: Symbola;
+                src: url(font/Symbola.ttf);
+            }
+
+            .reveal span.py {
+                font-weight: bolder;
+                //background-color: rgba(255, 255, 255, 0.1);
+                border-radius: 10px;
+            }
+
+            .reveal .py:before {
+                font-family: "Symbola";
+                background-color: #568ebd;
+                content: '🐍';
+                display: inline-block;
+                -webkit-transform: scaleX(-1);
+                transform: scaleX(-1);
+                font-weight: normal;
+                margin-right: 4px;
+                //background-color: rgba(255, 255, 255, 0.8);
+                padding: 4px;
+                color: black;
+                border-radius: 20px;
+            }
+            .reveal .py:after {
+                font-family: "Symbola";
+                background-color: #ffd54f;
+                content: '🐍';
+                font-weight: normal;
+                margin-left: 4px;
+                //background-color: rgba(255, 255, 255, 0.2);
+                color: black;
+                padding: 4px;
+                border-radius: 20px;
+                display: inline-block;
+            }
+            .reveal .cookie:before {
+                font-family: "Symbola";
+                content: '🍪 ';
+                font-weight: normal;
+                //background-color: rgba(255, 255, 255, 0.8);
+                padding: 4px;
+                margin-right: -6px;
+            }
+            .reveal .cookie:after {
+                font-family: "Symbola";
+                content: '🍪 ';
+                font-weight: normal;
+                //background-color: rgba(255, 255, 255, 0.8);
+                padding: 4px;
+            }
+
+            .reveal .slides section .fragment.result {
+                color: rgba(237, 237, 237, 0.2);
+                opacity: 0.2;
+                font-weight: normal;
+            }
+            .reveal .slides section .fragment.result.visible {
+                color: #dcdcdc;
+                opacity: 1;
+                font-weight: bolder;
+            }
+
+            .reveal .slides section .result {
+                display: block;
+                margin-bottom: 16px;
+                clear: both;
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+
+            .right {
+                float: right;
+            }
+
+            .reveal section img {
+                border: 0;
+                background: transparent;
+                box-shadow: None;
+            }
+
+            .reveal a.baseline:not(.image) {
+                vertical-align: text-bottom !important;
+            }
+
+            .reveal span.ref.link {
+                font-size: 60%;
+                padding-left: 0.1em;
+                vertical-align: super;
+            }
+            .reveal div.refs {
+                margin-top: 40px;
+                border-top: 1px solid rgba(255, 255, 255, 0.2);
+                text-align: left;
+                font-size: 70%;
+                padding-left: 16px;
+            }
+            .reveal span.ref.anchor {
+                font-size: 60%;
+                padding-left: 1em;
+                vertical-align: super;
+            }
+
+            .reveal h2 span.mini {
+                font-size: 70%;
+                padding-left: 8px;
+            }
+
+            .reveal ul {
+                margin-bottom: 15px;
+            }
+
+            .reveal pre code {
+                max-height: 540px;
+                font-size: 88%;
+            }
+
+            .reveal h2 img {
+                height: 160px;
+                vertical-align: middle;
+                padding-left: 20px;
+            }
+
+            .reveal div.source {
+                text-align: right;
+                width: 100%;
+                position: relative;
+                font-size: 14px;
+                margin-top: -14px;
+                right: 5%;
+            }
+
+            .reveal .symbol {
+                font-family: "Symbola";
+                font-size: 60px;
+             }
+
+            .reveal .schema {
+                font-size: 60%;
+                line-height: 1.4;
+                border-collapse: collapse;
+                table-layout: fixed;
+                width: 100%;
+            }
+
+            .reveal .schema td {
+                text-align: center;
+                vertical-align: middle;
+                padding: 20px 0;
+                margin: 20px 0;
+            }
+
+            .reveal .schema tr:nth-of-type(2) td:nth-of-type(even) {
+                font-size: 60px;
+                padding: 0 40px;
+            }
+
+            .reveal .schema tr:nth-of-type(2) td:nth-of-type(odd) {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+
+            .reveal .schema td pre {
+                font-size: 100%;
+                box-shadow: None;
+                white-space: nowrap;
+            }
+
+            .left {
+                float: left;
+            }
+
+            .top {
+                display: block;
+            }
+            
+            .reveal table.xpath {
+                border-collapse: collapse;
+                table-layout: fixed;
+                width: 100%;
+                font-size: 70%;
+                line-height: 1.1;
+            }
+            .reveal table.xpath tr:nth-of-type(1) td {
+                border-bottom: 1px solid white;
+            }
+
+            .reveal p {
+                text-align: left;
+            }
+
+            .reveal ul.links {
+                list-style-type: None;
+                margin-bottom: 80px;
+            }
+
+            .reveal .links .symbol {
+                display: inline-block;
+                width: 80px;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div class="reveal">
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section>
+                    <h1>Scrapython</h1>
+                    <h3>Gratter la toile avec <span class='py'>Python</span></h3>
+                    <small>Une présentation <a href="http://twitter.com/samuelcharron">@samuelcharron</a> / <a href="http://data-publica.com">Data Publica</a>.</small>
+                    <br>
+                    <small><a href="http://datapublica.github.io/scrapython">http://datapublica.github.io/scrapython</a></small>
+                </section>
+
+                <!--
+                <section>
+                    <h1>ATTENTION<br>CES SILDES NE SONT PAS DES SILDES SUR LE CYCLIMSE</h1>
+                    <h2>MERCI DE VOTRE COMPRÉHENSION</h2>
+                </section>
+                -->
+
+                <section>
+                    <h2>Contenu de la présentation</h2>
+                    <ul>
+                        <li><a href="#/2">Scrapathon ?</a></li>
+                        <li><a href="#/3">Scrapy</a></li>
+                        <li><a href="#/4">Requests</a></li>
+                        <li><a href="#/5">Pyquery</a></li>
+                        <li><a href="#/6">Requests + Pyquery</a></li>
+                        <li><a href="#/7">Un exemple concret</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Scrapathon ? <img src="img/logo-scrapathon-white.png"></h2>
+                        <h3>⇩</h3>
+                    </section>
+                    <section>
+                        <h2>Web Crawling <img src="img/spider.png"></h2>
+                        <ul>
+                            <li>Web: données peu structurées</li>
+                            <li>Structure: texte, liens entre pages, structure visuelle</li>
+                            <li>Utilisation: lecture, moteur de recherche textuel</li>
+                            <li>Pas de connaissance du site nécessaire, suivi des liens à l'aveugle</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Web Scraping</h2>
+                        <ul>
+                            <li>Structure cachée: souvent une base de données derrière un site</li>
+                            <li>Une page: un fragment de cette base de données</li>
+                            <li>Reconstituer la base de données à partir du site entier</li>
+                            <li>Utilisation: croisement de données, moteur de recherche structuré, ...</li>
+                            <li>Fortement lié à un site: extraction spécifique</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2><span class='symbol'>⚒</span>Outils<span class='symbol'>⚒</span></h2>
+                        <table class='schema'>
+                            <tr>
+                                <td><span class='symbol top'>&#9729;</span>Internet</td>
+                                <td></td>
+                                <td><span class='symbol top'>⇅</span>téléchargement</td>
+                                <td></td>
+                                <td><span class='symbol left'>🔤</span>chaîne de caractères</td>
+                                <td></td>
+                                <td><span class='symbol left'>🌲 </span>document (DOM)</td>
+                            </tr>
+                            <tr>
+                                <td class='symbol'>&#x1f4c4;</td>
+                                <td>⇢</td>
+                                <td class='symbol'>⇅</td>
+                                <td>⇢</td>
+                                <td><pre>"&lt;html&gt;"</pre></td>
+                                <td>⇢</td>
+                                <td><pre>&lt;html&gt;<br>&nbsp;&nbsp;&lt;body&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;</pre></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <ul>
+                                        <li><a href="#/4">Requests</a></li>
+                                        <li><a href="#/3">Scrapy</a></li>
+                                    </ul>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <ul>
+                                        <li><a href="http://docs.python.org/library/re.html">Expressions rationnelles</a></li>
+                                        <li><a href="#/5">PyQuery</a></li>
+                                        <li><a href="#/3">Scrapy</a></li>
+                                    </ul>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <ul>
+                                        <li><a href="#/3/5">XPaths</a></li>
+                                        <li><a href="#/5/2">Sélecteurs CSS</a></li>
+                                        <li><a href="#/5">PyQuery</a></li>
+                                        <li><a href="#/3">Scrapy</a></li>
+                                    </ul>
+                                </td>
+                        </table>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Scrapy ? <img src="img/scrapy.png"></h2>
+                        <h3>⇩</h3>
+                    </section>
+                    <section>
+                        <h2>Scrapy <span class='mini'>1/2</span></h2>
+                        <ul>
+                            <li><a class='baseline' href="http://scrapy.org/">Scrapy</a> est un cadriciel<span class='ref link'>1</span> orienté gratouillage<span class='ref link'>2</span>
+                            <li>Deux composants à définir:
+                                <ul>
+                                    <li>Une araignée<span class='ref link'>3</span> suivant les liens du site
+                                    <li>Des extracteurs de données
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class='refs'>
+                            <span class='ref anchor'>1</span> Framework
+                            <span class='ref anchor'>2</span> Scraping
+                            <span class='ref anchor'>3</span> Spider
+                        </div>
+                    </section>
+                    <section>
+                        <h2>Scrapy <span class='mini'>2/2</span></h2>
+                        <ul>
+                            <li>Configurable par de nombreux intergiciels<span class='ref link'>1</span>:
+                                <ul>
+                                    <li><span class='cookie'>Témoins de connexion<span class='ref link'>2</span></span></li>
+                                    <li>Agent d'utilisateur<span class='ref link'>3</span></li>
+                                    <li>Compression HTTP</li>
+                                </ul>
+                            </li>
+                            <li>Ainsi que par de la configuration globale
+                                <ul>
+                                    <li>Profondeur d'exploration</li>
+                                    <li>Temporisation des requêtes</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <div class='refs'>
+                            <span class='ref anchor'>1</span> Middlewares
+                            <span class='ref anchor'>2</span> Cookies
+                            <span class='ref anchor'>3</span> User Agent
+                        </div>
+                    </section>
+                    <section>
+                        <h2>Scrapy — Installation</h2>
+                        Installer scrapy:
+                        <pre><code class='snippet  bash' data-trim  data-noescape>pip install scrapy
+
+</code></pre><div class='source'>  <a class='source' href='examples/scrapy-install.sh'>  source  </a></div>
+                        Créer un projet scrapy:
+                        <pre><code class='snippet  bash' data-trim  data-noescape># créer un projet scrapy
+# Un projet scrapy peut contenir plusieurs araignées
+scrapy startproject mon_projet
+
+cd mon_projet
+
+# créer une araignée
+scrapy genspider -t basic my_spider mon.domaine.com
+
+# lancer l'araignée
+scrapy runspider mon_projet/spiders/my_spider.py
+
+</code></pre><div class='source'>  <a class='source' href='examples/scrapy-setup.sh'>  source  </a></div>
+                    </section>
+                    <section>
+                        <h2>Scrapy — Première araignée</h2>
+                        <pre><code class='snippet  python' data-trim  data-noescape>
+<span style='display:None;'>from scrapy.contrib.spiders import CrawlSpider
+from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
+from scrapy.contrib.spiders import Rule
+
+
+</span>class WikiAraignee(CrawlSpider):
+    name = 'wiki1'
+    # Domaines autorisés lors du parcours du site.
+    # Les URLs sortant de ce domaines sont supprimées.
+    allowed_domains = ['fr.wikipedia.org']
+    start_urls = ['http://fr.wikipedia.org/wiki/Araignée']
+
+    # Regles de suivi de lien
+    rules = [
+        Rule(SgmlLinkExtractor(),
+             follow=False,
+<span style='display:None;'>             process_links=lambda links: links[:5]
+</span>             )]
+
+</code></pre><div class='source'>  <a class='source' href='examples/scrapy/scrapy_example/spiders/wiki1.py'>  source  </a></div>
+                    </section>
+                    <section>
+                        <h2>Scrapy — XPaths<span class='mini'>1/2</span></h2>
+                        <ul>
+                            <li>Une syntaxe permettant de naviguer dans les éléments d'un document HTML.</li>
+                            <li>Déplacements relatifs</li>
+                            <li>Point de départ: un nœud virtuel situés au dessus du nœud &lt;html&gt;</li>
+                        </ul>
+                        
+                        <pre><code class='snippet  html' data-trim  data-noescape>&lt;html&gt;
+  &lt;body&gt;
+    &lt;ul&gt;
+      &lt;li class='c1'&gt;Premier élément&lt;/li&gt;
+      &lt;li&gt;Deuxième élément&lt;/li&gt;
+      &lt;li class='c1'&gt;Troisième élément&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+
+</code></pre><div class='source'>  <a class='source' href='examples/xpath.html'>  source  </a></div>
+                    </section>
+                    <section>
+                        <h2>Scrapy — XPaths<span class='mini'>2/2</span></h2>
+                        <pre><code class='snippet  html' data-trim  data-noescape>&lt;html&gt;
+  &lt;body&gt;
+    &lt;ul&gt;
+      &lt;li class='c1'&gt;Premier élément&lt;/li&gt;
+      &lt;li&gt;Deuxième élément&lt;/li&gt;
+      &lt;li class='c1'&gt;Troisième élément&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+
+</code></pre><div class='source'>  <a class='source' href='examples/xpath.html'>  source  </a></div>
+                        <table class='xpath'>
+                            <tr>
+                                <td>Sélecteur</td>
+                                <td>Description</td>
+                                <td>Résultat</td>
+                            </tr>
+                            <tr>
+                                <td>/html</td>
+                                <td>Les nœuds de type &lt;html&gt;</td>
+                                <td>[&lt;html&gt;]</td>
+                            </tr>
+                            <tr>
+                                <td>/html/body</td>
+                                <td>les fils des nœuds de type &lt;html&gt; qui ont pour type &lt;body&gt;</td>
+                                <td>[&lt;body&gt;]</td>
+                            </tr>
+                            <tr>
+                                <td>/html//li[2]</td>
+                                <td>le deuxième descendant de type &lt;li&gt; des nœuds de type &lt;html&gt;</td>
+                                <td>[Deuxième élément]</td>
+                            </tr>
+                            <tr>
+                                <td>/html//li[@class='c1']</td>
+                                <td>les descendants des nœuds de type &lt;html&gt; ayant un attribut «class» ayant comme valeur «c1»</td>
+                                <td>[Premier élément, Troisième élément]</td>
+                            </tr>
+                        </table>
+                    </section>
+                    <section>
+                        <h2>Scrapy — Shell</h2>
+                        <ul>
+                            <li>Interpreteur python prêt à l'emploi</li>
+                            <li>Permettant de tester des extractions.</li>
+                        </ul>
+                        <pre><code class='snippet  bash' data-trim  data-noescape>scrapy shell xpath.html # Accepte un fichier ou une URL
+
+[...]
+# hxs est une variable contenant le fichier ou l'URL téléchargée)
+# elle permet de faire des requêtes XPath sur ce contenu
+&gt;&gt;&gt; hxs.select("/html/body//li")
+[&lt;HtmlXPathSelector xpath='/html/body//li' data=u'&lt;li class="c1"&gt;Premier […]
+
+</code></pre><div class='source'>  <a class='source' href='examples/running-scrapy-shell.sh'>  source  </a></div>
+                    </section>
+                    <section>
+                        <h2>Scrapy — Deuxième araignée</h2>
+                        <pre><code class='snippet  python' data-trim  data-noescape>
+<span style='display:None;'>from scrapy.contrib.spiders import CrawlSpider
+from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
+from scrapy.contrib.spiders import Rule
+from scrapy.selector import HtmlXPathSelector
+from scrapy.item import Item, Field
+
+
+</span>class WikiItem(Item):
+    title = Field()
+
+
+class WikiAraignee(CrawlSpider):
+    name = 'wiki2'
+    allowed_domains = ['fr.wikipedia.org']
+    start_urls = ['http://fr.wikipedia.org/wiki/Araignée']
+
+    rules = [
+        Rule(SgmlLinkExtractor(),
+             callback='parse_page',
+<span style='display:None;'>             follow=False,
+             process_links=lambda links: links[:5],
+</span>             )]
+
+    def parse_page(self, response):
+        hxs = HtmlXPathSelector(response)
+        title = hxs.select('//title/text()').extract()
+        return WikiItem(title=title)
+
+</code></pre><div class='source'>  <a class='source' href='examples/scrapy/scrapy_example/spiders/wiki2.py'>  source  </a></div>
+                    </section>
+                    <section>
+                        <h2>Scrapy — Résultat</h2>
+                        <pre><code class='snippet  bash' data-trim  data-noescape>scrapy runspider scrapy_example/spiders/wiki2.py -o links.json --loglevel INFO
+
+</code></pre><div class='source'>  <a class='source' href='examples/running-scrapy.sh'>  source  </a></div>
+                        <pre><code class='snippet  json' data-trim  data-noescape>{"title": ["Araign\u00e9e - Wikip\u00e9dia"]}
+{"title": ["Classification scientifique des esp\u00e8ces - Wikip\u00e9dia"]}
+{"title": ["Araign\u00e9e (homonymie) - Wikip\u00e9dia"]}
+{"title": ["Aide:Redirection - Wikip\u00e9dia"]}
+{"title": ["Araneae - Wikip\u00e9dia"]}
+
+</code></pre><div class='source'>  <a class='source' href='examples/scrapy/links.json'>  source  </a></div>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Requests ? <img src="img/requests.png"></h2>
+                        <h3>⇩</h3>
+                    </section>
+        
+                    <section>
+                        <h2>Requests</h2>
+                        <ul>
+                            <li><a href="http://docs.python.org/dev/library/urllib.request.html">urllib</a>: bibliothèque fournie avec python. Peu pratique, plusieurs versions fournies avec les différentes versions de Python.
+                            <li><a href="http://python-requests.org/">Requests</a> enveloppe urllib pour présenter une interface unifiée, simple, et complète</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Exemple d'utilisation de Requests</h2>
+                        <pre><code class='snippet exec python' data-trim contenteditable data-noescape>import requests
+
+url = "http://fr.wikipedia.org/wiki/Araignée"
+resultat = requests.get(url)
+
+resultat.status_code
+<code class=' result'>200</code>resultat.text[:104]
+<code class=' result'>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr" dir="ltr" class="client-nojs"&gt;
+&lt;head&gt;
+&lt;title&gt;Araneae - Wikipédia&lt;/title&gt;</code></code></pre><div class='source'>  <a class='source' href='examples/requests-intro.py'>  source  </a></div>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>PyQuery ?</h2>
+                        <h3>⇩</h3>
+                    </section>
+
+                    <section>
+                        <h2>PyQuery</h2>
+                        <ul>
+                            <li><a href="https://github.com/gawel/pyquery/">PyQuery</a>: bibliothèque permettant d'extraire des éléments d'une page web
+                            <li>Évite l'utilisation de <a href="#/3/5">XPaths</a> pour la syntaxe plus agréable des sélecteurs CSS</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Sélecteurs CSS</h2>
+                        <table class='xpath'>
+                            <tr>
+                                <td>Sélecteur</td>
+                                <td>Description</td>
+                                <td>Équivalent XPath</td>
+                            </tr>
+                            <tr>
+                                <td>html</td>
+                                <td>Les nœuds de type &lt;html&gt;</td>
+                                <td>//html</td>
+                            </tr>
+                            <tr>
+                                <td>html > body</td>
+                                <td>les files des nœuds de type &lt;html&gt; qui ont pour type &lt;body&gt;</td>
+                                <td>//html/body</td>
+                            </tr>
+                            <tr>
+                                <td>html li:nth-of-type(2)</td>
+                                <td>le deuxième descendant de type &lt;li&gt; des nœuds de type &lt;html&gt;</td>
+                                <td>/html//li[2]</td>
+                            </tr>
+                            <tr>
+                                <td>html li.c1</td>
+                                <td>les descendants des nœuds de type &lt;html&gt; ayant un attribut «class» ayant comme valeur «c1»</td>
+                                <td>/html//li[@class='c1']</td>
+                            </tr>
+                            <tr>
+                                <td>li#c1</td>
+                                <td>le nœud de type &lt;li&gt; ayant un attribut «id» ayant comme valeur «c1»</td>
+                                <td>//li[@id='c1']</td>
+                            </tr>
+                        </table>
+                    </section>
+
+                    <section>
+                        <h2>Exemple d'utilisation de PyQuery</h2>
+                        <pre><code class='snippet exec python' data-trim contenteditable data-noescape>from pyquery import PyQuery as pq
+
+doc = """
+&lt;html&gt;&lt;body&gt;
+  &lt;ul class='container'&gt;
+      &lt;li id='li-1'&gt;premier li&lt;/li&gt;
+      &lt;li id='li-2'&gt;deuxieme li&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/body&gt;&lt;/html&gt;
+"""
+
+# Créer un document à partir d'une chaîne
+selecteur = pq(doc)
+
+# Sélectionner des éléments
+selecteur("ul.container").text()
+<code class=' result'>premier li deuxieme li</code>selecteur("#li-1").text()
+<code class=' result'>premier li</code></code></pre><div class='source'>  <a class='source' href='examples/pyquery-intro.py'>  source  </a></div>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Requests + PyQuery ! <img src="img/requests.png"></h2>
+                        <h3>⇩</h3>
+                    </section>
+                    <section>
+                        <h2>Requests + PyQuery <span class='mini'>1/2</span></h2>
+                        <pre><code class='snippet exec python' data-trim contenteditable data-noescape><span style='display:None;'>import json
+</span>from pyquery import PyQuery as pq
+import requests
+
+url = u"http://fr.wikipedia.org/wiki/Araignée"
+resultat = requests.get(url)
+document = pq(resultat.text).make_links_absolute(url)
+
+# Sélectionner des éléments
+json.dumps([a.attr.href for a in document("a").items()][:5], indent=2)
+<code class=' result'>[
+  "http://fr.wikipedia.org/wiki/Araign\u00c3\u00a9e", 
+  "http://fr.wikipedia.org/wiki/Araign\u00c3\u00a9e#mw-navigation", 
+  "http://fr.wikipedia.org/wiki/Araign\u00c3\u00a9e#p-search", 
+  "http://fr.wikipedia.org/wiki/Sp%C3%A9cial:Matrice_des_sites", 
+  "http://fr.wiktionary.org/wiki/Special:Recherche/Araign%C3%83%C2%A9e"
+]</code></code></pre><div class='source'>  <a class='source' href='examples/requests-pyquery.py'>  source  </a></div>
+                    </section>
+                    <section>
+                        <h2>Requests + PyQuery <span class='mini'>2/2</span></h2>
+                        <pre><code class='snippet exec python' data-trim contenteditable data-noescape><span style='display:None;'>import json
+</span>from pyquery import PyQuery as pq
+import requests
+
+url = u"http://fr.wikipedia.org/wiki/Araignée"
+resultat = requests.get(url)
+document = pq(resultat.text).make_links_absolute(url)
+
+titles = []
+# Sélectionner des éléments
+for link in ([a.attr.href for a in document("a").items()][:5]):
+    document = pq(requests.get(link).content)
+    titles.append(document("title").text())
+
+json.dumps(titles, indent=2)
+<code class=' result'>[
+  "Araign\u00c3\u00a9e - Wikip\u00e9dia", 
+  "Araign\u00c3\u00a9e - Wikip\u00e9dia", 
+  "Araign\u00c3\u00a9e - Wikip\u00e9dia", 
+  "Liste des wikis de Wikimedia Foundation - Wikip\u00e9dia", 
+  "R\u00e9sultats de recherche pour \u00ab Araign\u00c3\u00a9e \u00bb - Wiktionnaire"
+]</code></code></pre><div class='source'>  <a class='source' href='examples/requests-pyquery2.py'>  source  </a></div>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Un exemple concret</h2>
+                        <h3>⇩</h3>
+                    </section>
+                    <section>
+                        <h2>Projet "Qui fait quoi?"</h2>
+
+                        Objectif: Extraire des informations professionnelles des participants au scrapathon.
+                        <br>
+                        <br>
+                        <ul>
+                            <li>amiando.com pour la liste des participants</li>
+                            <li>linkedin pour les infos professionnelles</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Amiando — Les liens</h2>
+                        <img src='img/firebug.png'>
+                        <pre><code class='snippet  html' data-trim  data-noescape>&lt;a id="id21" href="#"
+    onclick="var wcall=wicketAjaxGet('/eventxml/wicket.xml;jsessionid=...', ..."
+&gt;Suivant »&lt;/a&gt;
+
+</code></pre><div class='source'>  <a class='source' href='examples/amiando-url.html'>  source  </a></div>
+                    </section>
+                    <section>
+                        <h2>Suivre les liens</h2>
+                        <pre><code class='snippet  python' data-trim  data-noescape>
+<span style='display:None;'>import re
+import urlparse
+
+from scrapy.spider import BaseSpider
+from scrapy.selector import HtmlXPathSelector
+from scrapy.http import Request
+
+
+</span>class QuiFaitQuoi(BaseSpider):
+    name = 'amiando'
+    allowed_domains = ['fr.amiando.com']
+    start_urls = ['http://fr.amiando.com/scrapathon.html?page=961570']
+
+    def parse(self, response):
+        hxs = HtmlXPathSelector(response)
+        # Extract next link
+        links = hxs.select("//span[@class='pagerBlock'][1]//a")
+        links = [a.select("@onclick")[0].extract()
+                 for a in links
+                 if "Suivant" in a.extract()]
+        if len(links) &gt; 0:
+            next_link = re.search("'(.*?)'", links[0])
+            next_link = next_link.group(1)
+            next_link = urlparse.urljoin(response.url, next_link)
+            yield Request(next_link)
+
+</code></pre><div class='source'>  <a class='source' href='examples/scrapy/scrapy_example/spiders/amiando.py'>  source  </a></div>
+                    </section>
+                    <section>
+                        <h2>Amiando — Les gens</h2>
+                        <img src='img/firebug2.png'>
+                    </section>
+                    <section>
+                        <h2>Extraire l'information</h2>
+                        <pre><code class='snippet  python' data-trim  data-noescape>
+<span style='display:None;'>import re
+import urlparse
+
+from scrapy.spider import BaseSpider
+from scrapy.selector import HtmlXPathSelector
+from scrapy.http import Request
+from scrapy.item import Item, Field
+
+
+</span>class People(Item):
+    name = Field()
+
+
+class QuiFaitQuoi(BaseSpider):
+    name = 'amiando2'
+    allowed_domains = ['fr.amiando.com']
+    start_urls = ['http://fr.amiando.com/scrapathon.html?page=961570']
+
+    def parse(self, response):
+        hxs = HtmlXPathSelector(response)
+<span style='display:None;'>        # Extract next link
+        links = hxs.select("//span[@class='pagerBlock'][1]//a")
+        links = [a.select("@onclick")[0].extract()
+                 for a in links
+                 if "Suivant" in a.extract()]
+        if len(links) &gt; 0:
+            next_link = re.search("'(.*?)'", links[0])
+            next_link = next_link.group(1)
+            next_link = urlparse.urljoin(response.url, next_link)
+            yield Request(next_link)
+</span>        for p in hxs.select("//ul[@class='eventPageGuestListContainer']/"
+                            "li//strong/text()"):
+            yield People(name=p.extract())
+
+</code></pre><div class='source'>  <a class='source' href='examples/scrapy/scrapy_example/spiders/amiando2.py'>  source  </a></div>
+                    </section>
+                    <section>
+                        <h2>Lancer scrapy</h2>
+                        <pre><code class='snippet  bash' data-trim  data-noescape>scrapy runspider scrapy_example/spiders/amiando2.py -o people.csv -t csv -L INFO
+
+</code></pre><div class='source'>  <a class='source' href='examples/amiando-start.sh'>  source  </a></div>
+                        <p>
+                            Cela va créer un fichier «people.csv» contenant un nom par ligne.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Croiser l'information</h2>
+                        <pre><code class='snippet  python' data-trim  data-noescape>
+<span style='display:None;'>import csv
+from pyquery import PyQuery as pq
+import json
+import requests
+</span># Lit les données
+people = csv.reader(open("scrapy/people.csv"))
+next(people)  # Passer l'en-tête
+
+data = []
+for full_name, in people:
+    # Coupe (arbitrairement) le prenom au premier espace
+    prenom, nom = full_name.split(" ", 1)
+    url = "http://fr.linkedin.com/pub/dir/?first=%s&last=%s" % (prenom, nom)
+
+    resultat = requests.get(url)
+    document = pq(resultat.text).make_links_absolute(url)
+
+    link = document("#result-set h2 strong a").attr.href
+<span style='display:None;'>    # Améliore l'extraction en ne prenant que quelqu'un bossant en France
+    vcards = document("#result-set li.vcard")
+    for vcard in vcards.items():
+        if "france" in vcard(".location").text().lower():
+            link = vcard("h2 strong a").attr.href
+            break
+</span>    boulot, image = None, None
+    if link:
+        profil = requests.get(link)
+        document = pq(profil.text).make_links_absolute(link)
+        boulot = [p.text().strip() for p in document(".current li").items()]
+        image = document("#profile-picture img").attr.src
+
+    data.append({"name": full_name, "boulot": boulot,
+                 "image": image, "url": link})
+<span style='display:None;'>json.dump(data, open("qui_fait_quoi.json", "w"), indent=2)
+</span>
+</code></pre><div class='source'>  <a class='source' href='examples/qui_fait_quoi.py'>  source  </a></div>
+                    </section>
+                    <section>
+                        <h2>Resultat</h2>
+                        <img src='img/qui_fait_quoi.png'><br>
+                        <a href='examples/qui_fait_quoi.html'>Démo</a>
+                        <!--<iframe src="examples/qui_fait_quoi.html" width="90%" height="500px"></iframe>-->
+                    </section>
+                </section>
+                <section>
+                    <h2>Liens à visiter d'urgence</h2>
+                    <ul class='links'>
+                        <li><span class='symbol'>🐦</span><a href="https://twitter.com/intent/tweet?source=webclient&text=Scrapathon — Scraping with python: http://datapublica.github.io/scrapython">Partager sur le gazouilleur</a></li>
+                        <li><span class='symbol'>✉</span><a href="https://twitter.com/samuelcharron">@samuelcharron</a> — <a href="https://twitter.com/datapublicool">@datapublicool</a></li>
+                        <li><span class='symbol'>☕</span><a href="http://datapublica.github.io/scrapathon-java/">Scrapathon Java</a> — <a href="https://twitter.com/tdudouet">@tdudouet</a></li>
+                    </ul>
+                    <h2>Choses à faire d'urgence</h2>
+                    <ul class='links'>
+                        <li><span class='symbol'>✐</span>Gazouiller <b>#scrapathon</b></li>
+                    </ul>
+                </section>
+
+            </div>
+
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.min.js"></script>
+        <script src="lib/js/jquery-2.0.1.min.js"></script>
+
+        <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                     { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+                    // { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+                    // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+
+            $(function() {
+                $("pre code.exec").on("keydown", function(e) {
+                    // Ctrl-Enter pressed
+                    if (e.ctrlKey && e.keyCode == 13) {
+                        var code = $(this).children(".result").remove();
+                        code = $(this).text();
+                        console.log(code);
+                        var self = this;
+                        $.ajax("/eval", {
+                            data: JSON.stringify({"code": code}),
+                            method: "POST",
+                            success: function(data) {
+                                console.log(data.eval);
+                                $(self).html(data.eval);
+                                $(self).blur();
+                            },
+                            contentType: "application/json"
+                        });
+                    }
+                });
+            });
+
+        </script>
+
+    </body>
+</html>
