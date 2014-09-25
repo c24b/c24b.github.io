@@ -310,13 +310,13 @@
                             <tr>
                                 <td class='symbol left'>&#x1f4c4;</td>
                                 <td>⇢</td>
-                                <td class='symbol center'>⇅</td>
+                                <td class='symbol left'>⇅</td>
                                 <td>⇢</td>
                                 <td><pre>"&lt;html&gt;"</pre></td>
                                 <td>⇢</td>
                                 <td><pre>&lt;html&gt;<br>&nbsp;&nbsp;&lt;body&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;</pre></td>
                                 <td>⇢</td>
-                                <td><span class="symbol center">📄</span> or <img class="symbol right" src="db.png"></td>
+                                <td class='symbol left'>📄</td>
                             </tr>
                             <tr>
                                 <td></td>
@@ -330,30 +330,57 @@
                                 <td>
                                     <ul>
                                         <li><a href="#/5">BeautifulSoup</a></li>
-                                        <li><a href="#/3">Lxml</a></li>
+                                        <li><a href="#/6">Lxml</a></li>
                                     </ul>
                                 </td>
                                 <td></td>
                                 <td>
                                     <ul>
 										
-                                        <li><a href="#/3/5">XPaths</a></li>
+                                        <li><a href="#/6/1">XPaths</a></li>
                                         <li><a href="#/5/2">CSS Selectors</a></li>
-                                        <li><a href="http://docs.python.org/library/re.html">Regular Expressions</a></li>
+                                        <li><a href="#/7">Regular Expressions</a></li>
                                     </ul>
                                 </td>
                                 <td>
                                     <ul>
-										<li><a href="#/3/5">CSV</a></li>
-                                        <li><a href="#/3/5">JSON</a></li>
+										<li>CSV</li>
+                                        <li>JSON</li>
+                                        <li>Database</li>
                                     </ul>
                                 </td>
                         </table>
                     </section>
                 </section>
 				<section>
-					Requests
-				</section>
+                    <section>
+                        <h2>Requests ? <img src="img/requests.png"></h2>
+                        <h3>⇩</h3>
+                    </section>
+        
+                    <section>
+                        <h2>Requests</h2>
+                        <ul>
+                            <li><a href="http://docs.python.org/dev/library/urllib.request.html">urllib</a>: bibliothèque fournie avec python. Peu pratique, plusieurs versions fournies avec les différentes versions de Python.
+                            <li><a href="http://python-requests.org/">Requests</a> enveloppe urllib pour présenter une interface unifiée, simple, et complète</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Exemple d'utilisation de Requests</h2>
+                        <pre><code class='snippet exec python' data-trim contenteditable data-noescape>import requests
+
+url = "http://fr.wikipedia.org/wiki/Araignée"
+resultat = requests.get(url)
+
+resultat.status_code
+<code class=' result'>200</code>resultat.text[:104]
+<code class=' result'>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr" dir="ltr" class="client-nojs"&gt;
+&lt;head&gt;
+&lt;title&gt;Araneae - Wikipédia&lt;/title&gt;</code></code></pre><div class='source'>  <a class='source' href='examples/requests-intro.py'>  source  </a></div>
+                    </section>
+                </section>
 				<section>
 					Parsing a web page
 				</section>
