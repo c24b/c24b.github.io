@@ -261,17 +261,16 @@
                     <section>
 						<ul>
 						<li><a class='baseline' href="http://en.wikipedia.org/wiki/Web_mining">Webmining</a> is the application of <a href="http://en.wikipedia.org/wiki/Datamining"> data mining</a> techniques to discover patterns from the Web</li>
-						<li>It's also a misused word to say:</li> 
-						<quote>collect data from the Web in order to constitute datasets and explore it</quote>
+						<li>It's also a misused word to say:</li> <quote>collect data from the Web in order to constitute datasets and explore it</quote>
                         </ul>
                     </section>
                     <section>
                         <ul>
 							<h3>What for?</h3>
                             <li>Create datasets from semi structured data</li>
-                            <li>Make enquiries and research on it</li>
-                            <li>Cross data and enhance knowledge</li>
-                            <li>Visualize it and explore</li>
+                            <li>Explore dataset and answer to enquiries</li>
+                            <li>Cross data  with other sources and enhance knowledge</li>
+                            <li>Visualize and analyse it</li>
                         </ul>
                     </section>
                     <section>
@@ -389,7 +388,7 @@ resultat.status_code
 					<h3>⇩</h3>
 				</section>
 				<section>
-					<h2>BeautifulSoup (1/2)</h2>
+					<h2>BeautifulSoup</h2>
 						<ul>
 							<li><a href="www.crummy.com/software/BeautifulSoup/bs4/doc/">BeautifulSoup</a>: a simple module to access to html entities</li>
 						</ul>
@@ -403,6 +402,7 @@ resultat.status_code
                         <pre><code class='snippet exec python' data-trim contenteditable data-noescape>from bs4 import BeautifulSoup
 doc = """
 &lt;html&gt;&lt;body&gt;
+&lt;title&gt;Hello World&lt;/title&gt;
 &lt;title&gt;Hello World&lt;/title&gt;
   &lt;ul class='container'&gt;
 	  &lt;li id='li-1'&gt;premier li&lt;/li&gt;
@@ -422,6 +422,7 @@ list = soup.find_all('li')
 >>>print(list)
 [premier li,deuxieme li]
 						</code></pre>
+						<div class='source'>   <a class='source' href='examples/beautifulsoup-intro.py'>  source  </a></div>
                 </section>
                 <section>
                     <h2>Beautiful Soup : Selecting html tags (2/2)</h2>
@@ -437,7 +438,7 @@ list = soup.find_all('li')
 		#finding one element by tag and class name
 		soup.find('h1',{'class':'featured')						
                     </code></pre>
-                    And much <a href="http://www.crummy.com/software/BeautifulSoup/bs4/doc/">more ...</a>
+                    <div class='source'>   And much more in the <a class='source' href='http://www.crummy.com/software/BeautifulSoup/bs4/doc/'>  doc  </a></div>
                     </section>
                     <section>
 						<h2>Firebug</h2>
@@ -448,7 +449,8 @@ list = soup.find_all('li')
                         <span class='symbol'>☞</span> Open Chrome, press F12</li>
                     </section>
                     <section>
-                        <img scr="img/examine.png">
+                    <h2>Descending the DOM🌲</h2>
+                    <p>DOM stands for document mapper. </p>
                     </section>
 				</section>
 				<section>
