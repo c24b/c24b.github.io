@@ -473,7 +473,7 @@ soup.find('h1',{'class':'featured')
 						<div class='source'><a class='source' href='http://www.crummy.com/software/BeautifulSoup/bs4/doc/'> And much more in the doc</a></div>
                     </section>
                     <section>
-                    <blockquote>But how do I knwow the tag, class of my web page?</blockquote>
+                    <blockquote>But how do I know the tag, class of my web page to extract content?</blockquote>
                     </section>    
                  </section>
                 <section id="6">
@@ -482,28 +482,101 @@ soup.find('h1',{'class':'featured')
 						<h3>⇩</h3>
 					</section>
 					<section>
-						<p>DOM stands for <b>D</b>ocument <b>O</b>bject <b>M</b>apper.</p>
-						<p>DOM is a standard that represent and store HTML or XML documments in a tree representation</p>
-						<table class="full">
+						<p>DOM (<b>D</b>ocument <b>O</b>bject <b>M</b>apper) is a W3C standard that represents and store HTML or XML documents</p>
+						<p>DOM transform a string in a <b>tree</b> representation with nodes</p>
+						
+						<br />
+						<ul>
+						<table width="100%">
 							<tr>
-								<td><span class='symbol left'>🔤</span>string</td>
-								<td>⇢</td>
-								<td><span class='symbol left'>🌲 </span>document (DOM)</td>
 							</tr>
 							<tr>
-								<td><pre>"&lt;html&gt;"</pre></td>
-                                <td>⇢</td>
-                                <td><pre>&lt;html&gt;<br>&nbsp;&nbsp;&lt;body&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;</pre></td>
+                                
+                                <td><span class='symbol left'>🔤</span>string</td>
+                                <td  width="10%"></td>
+                                <td><span class='symbol left'>🌲 </span>document (DOM)</td>
+                                
+                            </tr>
+                            <tr>
+                                <td><pre>"&lt;html&gt;"</pre></td>
+                                <td width="10%">⇢</td>
+                                <td><pre>&lt;html&gt;<br>&nbsp;&nbsp;&lt;body&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;</pre></td> 
+                            </tr>
+                            <tr>
 							</tr>
 						</table>
+						</ul>
 					</section>
+					<section>
+						<img src="img/tree.png">
+					</section>
+					<section>
+						<h2>Navigate into the webpage</h2>
+                        <pre><code class='snippet  html' data-trim  data-noescape>&lt;html&gt;
+  &lt;body&gt;
+    &lt;ul&gt;
+      &lt;li class='c1'&gt;Premier élément&lt;/li&gt;
+      &lt;li&gt;Deuxième élément&lt;/li&gt;
+      &lt;li class='c1'&gt;Troisième élément&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+
+</code></pre><div class='source'>  <a class='source' href='examples/xpath.html'>  source  </a></div>
+<ul>So it's a tree...</ul>
+</section>
+<section>
+<h2>XPATH Selectors</h2>
+                        <table class='xpath'>
+                            <tr>
+                                <td>Selector</td>
+                                <td>Description</td>
+                                <td>XPath</td>
+                                <td>BeautifulSoup method</td>
+                                
+                            </tr>
+                            <tr>
+                                <td>html</td>
+                                <td>Nodes of type &lt;html&gt;</td>
+                                <td>//html</td>
+                                <td><pre>soup.find('html')</pre></td>
+                                
+                            </tr>
+                            <tr>
+                                <td>html > body</td>
+                                <td>the children nodes of type &lt;html&gt; who's type is &lt;body&gt;</td>
+                                <td>//html/body</td>
+                                <td><pre>soup.find('body')</pre></td>
+                                
+                            </tr>
+                            <tr>
+                                <td>html li:nth-of-type(2)</td>
+                                <td>the second child of type &lt;li&gt; node of type &lt;html&gt;</td>
+                                <td>/html//li[2]</td>
+                                <td><pre>soup.find_all('li')[1]</pre></td>
+                            </tr>
+                            <tr>
+                                <td>html li.c1</td>
+                                <td>children of type &lt;html&gt; which attribute «class» has value «c1»</td>
+                                <td>/html//li[@class='c1']</td>
+                                <td><pre>soup.find_all('li', {"class": "c1"})</pre></td>
+                                
+                            </tr>
+                            <tr>
+                                <td>li#c1</td>
+                                <td>node of type &lt;li&gt; which attribute «id» has value «c1»</td>
+                                <td>//li[@id='c1']</td>
+                                <td><pre>soup.find_all('li', {"id": "c1"})</pre></td>
+                            </tr>
+                        </table>
+                        
+                    </section>
 					<section>
 						<h2>DOM Inspector: demo</h2>
                         <p>Your web browser let's you inspect the <a href="#/8/2">DOM</a>
                         and select the value of the data you want to extract </p>
-                        
                         <span class='symbol'>☞</span> Open Chrome or Firefox, press F12</li>
-                    <section>
+                    </section>
 					<section>
                         <img src="img/examine.png">
                     </section>
@@ -529,16 +602,26 @@ soup.find('h1',{'class':'featured')
 &lt;title&gt;BBC Science - BBC Science&lt;/title&gt;
 >>>print(soup.title.text)
 BBC Science - BBC Science
+>>>print(soup.next_sibling)
 						</code></pre>
-						<div class='source'><a class='source' href='examples/extract.py'> And much more in the doc</a></div>
+						<div class='source'><a class='source' href='examples/extract.py'>Source</a></div>
+						<ul><a class='source' href='http://www.crummy.com/software/BeautifulSoup/bs4/doc/'> And much more in the doc</a></ul>
+						
                     </section>
+					<section>
+					<ul>Alternative more robusts exists:</ul>
+					<li>See Html5lib and LXML for full xpath support </li>
+					</section>
                 </section>
+				
+				</section>
 				<section id="8">
 					<section>
 						<h2>Now it's your turn!</h2>
 						<h3>⇩</h3>
 					</section>
 					<section>
+						<h3>First round:</h3>
 						<ul>
 							<li>Open <a href="https://remixjobs.com/">https://remixjobs.com/</a> with your webrowser (Chrome OR Firefox)</li>
 							<li>Find the node you need to extract:</li>
@@ -546,12 +629,53 @@ BBC Science - BBC Science
 								<li>The title of the job</li>
 								<li>The compagny name</li>
 								<li>City</li>
+								<li>Tags</li>
 							</ul>
 						</ul>
-						
 					</section>	
 				</section>
 				<section id="9">
+					<section>
+					<h2>Workshop</h2>
+						<h3>⇩</h3>
+					</section>
+					<section>
+						<h3>Community detection in a Genomics Wiki</h3>
+						<p>Website: <a href="http://www.openwetware.org/">Openwetware.org</a></p>
+						<br />
+						<ul>
+						Special mining targets:
+							<li>How many user, groups and labs in this wiki?</li>
+							<li>Which group is the more active on this wiki?</li>
+							<li>Which lab is the more active on this wiki?</li>
+							<li>What are the interactions between user, groups and labs?</li>
+						</ul>
+					</section>
+					<section>
+						<h3>1- Webscrapping</h3>
+						<ul>
+							
+						We will use 3 different entry points in the website in order to mine user activity on the website:
+						<li><a href="http://www.openwetware.org/index.php?title=Special:ListUsers&limit=5000">User lists</a></li>
+						<li><a href="http://www.openwetware.org/wiki/Groups">Group pages</a></li>
+						<li><a href="http://www.openwetware.org/wiki/Labs">Lab pages</a></li>
+						</ul>
+					</section>
+					<section>
+						<h3>2- Store and clean the data (JSON or CSV)</h3>
+						Use what you learn to create usefull datasets
+					</section>
+					<section>
+						<h3>3- Compute info using Python</h3>
+						<ul>
+							<li>Count the users</li>
+							<li>Make a program that tell us in which group and lab this user belong</li>
+							<li>Show us intersections bewteen labs, groups and users</li>
+						</ul>
+					</section>
+						
+				</section>
+				<section id="10">
 					<h3> Further readings</h3>
 					<ul>Other parsing tools:
 					<li>LXML</li>
