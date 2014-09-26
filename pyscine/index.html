@@ -420,6 +420,34 @@ list = soup.find_all('li')
 [premier li,deuxieme li]
 						</code></pre>
                 </section>
+                <section>
+                    <h2>Select data using BeautifulSoup</h2>
+                    <h4>Selecting html tags</h4>
+                    BeautifulSoup let's you access the html element by tag, class, next and previous
+                    <pre><code class='snippet exec python' data-trim contenteditable data-noescape>
+		#finding first element with tag &lt;h1&gt;
+		soup.find('h1')
+		#finding next element with tag &lt;h3&gt;
+		first = soup.find('h2')
+		second = first.next_sibling
+		#finding all links
+		soup.find_all('a')
+		#finding one element by tag and class name
+		soup.find('h1',{'class':'featured')						
+                    </code></pre>
+                    And much <a href="http://www.crummy.com/software/BeautifulSoup/bs4/doc/">more ...</a>
+                    </section>
+                    <section>
+						<h2>Firebug</h2>
+                        <br/>
+                        <p>Firebug or Chromebug is a little tool inside your web-browser that will help you to inspect the html
+                        and select the value of the data you want to extract </p>
+                        <br/>
+                        <span class='symbol'>☞</span> Open Chrome, press F12</li>
+                    </section>
+                    <section>
+                        <img scr="img/examine.png">
+                    </section>
 				</section>
 				<section>
 					<section>
@@ -443,51 +471,8 @@ list = soup.find_all('li')
 BBC Science - BBC Science
 						</code></pre>
                     </section>
-                    <section>
-                    <h2>Using Beautiful Soup</h2>
-                    <h4>Navigating into the webpage</h4>
-                    BeautifulSoup let's you access the html element by tag, class, next and previous
-                    <pre><code class='snippet exec python' data-trim contenteditable data-noescape>
-		#finding first element with tag &lt;h1&gt;
-		soup.find('h1')
-		#finding next element with tag &lt;h3&gt;
-		first = soup.find('h2')
-		second = first.next_sibling
-		#finding all links
-		soup.find_all('a')
-		#finding one element by tag and class name
-		soup.find('h1',{'class':'featured')						
-                    </code></pre>
-                    And much more <a href="http://www.crummy.com/software/BeautifulSoup/bs4/doc/">more</a>(RTFM!)
-                    </section>
-                    <section>
-						<h2>Firebug</h2>
-                        <br/>
-                        <p>Firebug or Chromebug is a little tool inside your web-browser that will help you to inspect the html
-                        and select the data you want to extract </p>
-                        <br/>
-                        <li class='symbol'><span></span>☞</span> Open Chrome, press F12</li>
-                    </section>
-                    <section>
-                        <img scr="img/examine.png">
-                    </section>
+                    
 				</section>			
-				<section>
-					Lxml
-				</section>
-				<section>
-					XPath
-				</section>
-				<section>
-					<section>
-					<h2>Regular Expression</h2>
-                    <h3>⇩</h3>
-                    </section>
-                    <section>
-					<h2>Regular Expression</h2>
-                    <h3>⇩</h3>
-                    </section>
-				</section>
 			</div>
 		</div>
 		
