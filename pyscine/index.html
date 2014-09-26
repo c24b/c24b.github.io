@@ -423,44 +423,49 @@ list = soup.find_all('li')
 				</section>
 				<section>
 					<section>
-                        <h2>Requests <img src="img/requests.png"> + BeautifulSoup <img src="img/bs.jpg"></h2>
+                        <h2>Requests <img src="img/requests.png"></h2>
+                        <h2>+</h2>
+                        <h2>BeautifulSoup <img src="img/bs.jpg"></h2>
                         <h3>⇩</h3>
                     </section>
-                    <section>
-					<h2>=</h2>
-					<h3>Your first webscrapping project!</h3>
-					</section>
 					<section>
-						<h2> Loading the webpage</h2>
-                        <pre><code class='snippet exec python' data-trim contenteditable data-noescape>
-						>>>import requests
-                        >>>from bs4 import BeautifulSoup as bsoup
-                        >>>r = requests.get('http://www.bbc.co.uk/science/0/')
-                        # we should always verify that page is correctly loaded
-                        # if r.status_code == 200:
-						>>>doc = r.text
-						>>>soup = bsoup(doc)
-						>>>print(soup.title)
-						<title>BBC Science - BBC Science</title>
-						>>>print(soup.title.text)
-						BBC Science - BBC Science
+						<h2> Loading and extracting a webpage</h2>
+                        <pre><code class='snippet exec python' data-trim contenteditable data-noescape>>>>import requests
+>>>from bs4 import BeautifulSoup as bsoup
+>>>r = requests.get('http://www.bbc.co.uk/science/0/')
+# we should always verify that page is correctly loaded
+# if r.status_code == 200:
+>>>doc = r.text
+>>>soup = bsoup(doc)
+>>>print(soup.title)
+<title>BBC Science - BBC Science</title>
+>>>print(soup.title.text)
+BBC Science - BBC Science
+						</code></pre>
                     </section>
-				</section>
+                    <section>
+						<h2>Find what you want to extract</h2>
+                        <li> Open Chrome and enter an url</li>
+                        <li>Press the F12 Key to activate the examination panel</li>
+                        <img scr="img/examine.png">
+                        
+                    </section>
+				</section>			
+				<section>
+					Lxml
 				</section>
 				<section>
 					XPath
 				</section>
 				<section>
-					BeautifulSoup
-				</section>
-				<section>
-					Lxml
-				</section>
-				<section>
-					Datamining
-				</section>
-				<section>
-					Datavisualization
+					<section>
+					<h2>Regular Expression</h2>
+                    <h3>⇩</h3>
+                    </section>
+                    <section>
+					<h2>Regular Expression</h2>
+                    <h3>⇩</h3>
+                    </section>
 				</section>
 			</div>
 		</div>
