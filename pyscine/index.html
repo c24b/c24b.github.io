@@ -233,7 +233,7 @@
         <div class="reveal">
             <!-- Any section element inside of this container is displayed as a slide -->
             <div class="slides">
-                <section id="intro">
+                <section id="0">
                     <h2>WebMining</h2>
                     <h3>with</h3>
                     <h3> <span class='py'>Python</span></h3>
@@ -245,7 +245,7 @@
                     <br />
 					<small>Inspired by <a href="http://datapublica.github.io/scrapython/#/">DataPublica</a>: a special thanks to <a href="http://twitter.com/samuelcharron">@samuelcharron</a></small>
                 </section>
-                <section id="summary">
+                <section id="1">
                     <h2>Webmining with Python</h2>
                     <ul>
                         <li><a href="#/2">Webmining?</a></li>
@@ -253,7 +253,7 @@
                         <li><a href="#/4">Workshop</a></li>
                     </ul>
                 </section>
-                <section id="definition">
+                <section id="2">
                     <section>
                         <h2>Webmining?</h2>
                         <h3>⇩</h3>
@@ -262,8 +262,9 @@
 						<ul>
 						<li><a class='baseline' href="http://en.wikipedia.org/wiki/Web_mining">Webmining</a> is the application of <a href="http://en.wikipedia.org/wiki/Datamining"> data mining</a> techniques to discover patterns from the Web</li>
 						<li>It's also a misused word to say:</li> 
-						<blockquote>collect data from the Web in order to constitute datasets and explore it</blockquote>
-                        </ul>
+						</ul>
+						<blockquote>"collect data from the Web in order to constitute datasets and explore it"</blockquote>
+                        
                     </section>
                     <section id="data scrapping">
 						<h2>Data Scrapping<img src="img/scrapy.png"></h2>
@@ -290,6 +291,7 @@
 							</ul>
                         </ul>
                     </section>
+					<section>
                         <h2>Data Mining<img src="img/loupe.png"></h2>
                         <h3>Finding patterns</h3>
                         <ul>
@@ -322,7 +324,7 @@
                         </ul>
                     </section>
 				</section>
-				<section>
+				<section id="3">
                         <h2><span class='symbol'>⚒</span>Tools<span class='symbol'>⚒</span></h2>
                         <table class='schema'>
                             <tr>
@@ -385,7 +387,7 @@
                         </table>
                     </section>
                 </section>
-				<section>
+				<section id="4">
                     <section>
                         <h2>Requests ? <img src="img/requests.png"></h2>
                         <h3>⇩</h3>
@@ -414,24 +416,24 @@ resultat.status_code
 &lt;title&gt;Araneae - Wikipédia&lt;/title&gt;</code></code></pre><div class='source'>  <a class='source' href='examples/requests-intro.py'>  source  </a></div>
                     </section>
                 </section>
-                <section>
-                <section>
+                <section id="5">
 					<h2>Beautiful Soup? <img src="img/bs.jpg"></h2>	
 					<h3>⇩</h3>
 				</section>
-				<section>
-					<h2>BeautifulSoup</h2>
-						<ul>
-							<li><a href="www.crummy.com/software/BeautifulSoup/bs4/doc/">BeautifulSoup</a>: a simple module to access to html entities</li>
-						</ul>
-						<ul></ul>
-							<li>Let's you find the data using html selectors and css class</li>
-							<li>Avoid to use the syntax of <a href="#/6/1"> XPath</a></li>
-						</ul>
-				</section>
-				<section>
-					<h2>Using BeautifulSoup: example</h2>
-                        <pre><code class='snippet exec python' data-trim contenteditable data-noescape>from bs4 import BeautifulSoup
+				<section id="6">
+					<section>
+						<h2>BeautifulSoup</h2>
+							<ul>
+								<li><a href="www.crummy.com/software/BeautifulSoup/bs4/doc/">BeautifulSoup</a>: a simple module to access to html entities</li>
+							</ul>
+							<ul></ul>
+								<li>Let's you find the data using html selectors and css class</li>
+								<li>Avoid to use the syntax of <a href="#/6/1"> XPath</a></li>
+							</ul>
+					</section>
+					<section>
+						<h2>Using BeautifulSoup: example</h2>
+							<pre><code class='snippet exec python' data-trim contenteditable data-noescape>from bs4 import BeautifulSoup
 doc = """
 &lt;html&gt;&lt;body&gt;
 &lt;title&gt;Hello World&lt;/title&gt;
@@ -456,7 +458,7 @@ list = soup.find_all('li')
 						</code></pre>
 						<div class='source'>   <a class='source' href='examples/beautifulsoup-intro.py'>  source  </a></div>
                 </section>
-                <section>
+					<section>
                     <h2>Beautiful Soup : Selecting html tags (2/2)</h2>
                     BeautifulSoup let's you access the html element by tag, class, next and previous
                     <pre><code class='snippet exec python' data-trim contenteditable data-noescape>
@@ -472,6 +474,7 @@ list = soup.find_all('li')
                     </code></pre>
                     <div class='source'><a class='source' href='http://www.crummy.com/software/BeautifulSoup/bs4/doc/'> And much more in the doc</a></div>
                     </section>
+                    
                     <section>
 						<h2>Inspect the webpage</h2>
                         
@@ -479,14 +482,13 @@ list = soup.find_all('li')
                         and select the value of the data you want to extract </p>
                         <br/>
                         <span class='symbol'>☞</span> Open Chrome or Firefox, press F12</li>
-                    </section>
                     <section>
 						<h2><span class='symbol top'>🌲</span>Manipulating DOM</h2>
 						<p>DOM stands for <b>D</b>ocument <b>O</b>bject <b>M</b>apper.</p>
 						<p></p>
                     </section>
 				</section>
-				<section>
+				<section id="7">
 					<section>
                         <h2>Requests <img src="img/requests.png"></h2>
                         <h2>+</h2>
@@ -510,7 +512,7 @@ BBC Science - BBC Science
                     </section>
                 </section>
                 
-				<section>
+				<section id="8">
 					<section>
 						<h3>Now your turn!</h3>
 					</section>
@@ -519,8 +521,8 @@ BBC Science - BBC Science
 						
 					</section>	
 				</section>
-				<section>
-					<h3> Reading suggestions</h3>
+				<section id="9">
+					<h3> Further readings</h3>
 					<ul>Other parsing tools:
 					<li>LXML</li>
 					<li>PyQuery</li>
