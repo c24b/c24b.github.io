@@ -411,7 +411,7 @@ doc = """
 soup = BeautifulSoup(doc)
 # Select the element
 title = soup.title
-text_title = soup.title.text()
+text_title = soup.title.text
 >>>print(text_title)
 'Hello World'								
 #Find all elements
@@ -421,6 +421,32 @@ list = soup.find_all('li')
 						</code></pre>
                 </section>
 				</section>
+				<section>
+					<section>
+                        <h2>Requests <img src="img/requests.png"> + BeautifulSoup <img src="img/bs.jpg"></h2>
+                        <h3>⇩</h3>
+                    </section>
+                    <section>
+					<h2>=</h2>
+					<h3>Your first webscrapping project!</h3>
+					</section>
+					<section>
+						<h2> Loading the webpage</h2>
+                        <pre><code class='snippet exec python' data-trim contenteditable data-noescape>
+						>>>import requests
+                        >>>from bs4 import BeautifulSoup as bsoup
+                        >>>r = requests.get('http://www.bbc.co.uk/science/0/')
+                        # we should always verify that page is correctly loaded
+                        # if r.status_code == 200:
+						>>>doc = r.text
+						>>>soup = bsoup(doc)
+						>>>print(soup.title)
+						<title>BBC Science - BBC Science</title>
+						>>>print(soup.title.text)
+						BBC Science - BBC Science
+                    </section>
+				</section>
+				
 				<section>
 					XPath
 				</section>
