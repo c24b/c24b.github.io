@@ -233,7 +233,7 @@
         <div class="reveal">
             <!-- Any section element inside of this container is displayed as a slide -->
             <div class="slides">
-                <section>
+                <section id="intro">
                     <h2>WebMining</h2>
                     <h3>with</h3>
                     <h3> <span class='py'>Python</span></h3>
@@ -245,7 +245,7 @@
                     <br />
 					<small>Inspired by <a href="http://datapublica.github.io/scrapython/#/">DataPublica</a>: a special thanks to <a href="http://twitter.com/samuelcharron">@samuelcharron</a></small>
                 </section>
-                <section>
+                <section id="summary">
                     <h2>Webmining with Python</h2>
                     <ul>
                         <li><a href="#/2">Webmining?</a></li>
@@ -253,7 +253,7 @@
                         <li><a href="#/4">Workshop</a></li>
                     </ul>
                 </section>
-                <section>
+                <section id="definition">
                     <section>
                         <h2>Webmining?</h2>
                         <h3>⇩</h3>
@@ -261,17 +261,46 @@
                     <section>
 						<ul>
 						<li><a class='baseline' href="http://en.wikipedia.org/wiki/Web_mining">Webmining</a> is the application of <a href="http://en.wikipedia.org/wiki/Datamining"> data mining</a> techniques to discover patterns from the Web</li>
-						<li>It's also a misused word to say:</li> <quote>collect data from the Web in order to constitute datasets and explore it</quote>
+						<li>It's also a misused word to say:</li> 
+						<blockquote>collect data from the Web in order to constitute datasets and explore it</blockquote>
                         </ul>
                     </section>
-                    <section>
+                    <section id="data scrapping">
+						<h2>Data Scrapping<img src="img/scrapy.png"></h2>
+						<h3>Collect Data</h3>
                         <ul>
-							<h3>What for?</h3>
-                            <li>Create datasets from semi structured data</li>
-                            <li>Explore dataset and answer to enquiries</li>
-                            <li>Cross data  with other sources and enhance knowledge</li>
-                            <li>Visualize and analyse it</li>
+                            <li>Transform non structured data</li>
+                            <li>into structure dataset</li>
+                            <li>Output Format:</li>
+                            <ul>
+								<li>Files (small datasets):</li>
+								<ul>
+									<li>JSON</li>
+									<li>CSV</li>
+									<li>TEXT????</li>
+								</ul>
+							</ul>
+							<ul>
+								<li>Databases (big datasets):</li>
+								<ul>
+									<li>SQL /SQLITE</li>
+									<li>Mongo DB</li>
+									<li>etc..</li>
+								</ul>
+							</ul>
                         </ul>
+                    </section>
+                        <h2>Data Mining<img src="img/loupe.png"></h2>
+                        <h3>Finding patterns</h3>
+                        <ul>
+                            <li>Anomaly detection</li>
+                            <li>Association rule learning </li>
+                            <li>Clustering</li>
+                            <li>Classification</li>
+                            <li>Regression</li>
+                            <li>Summarization</li>
+                        </ul>
+                        <span class='symbol'>☞</span> See <a href="http://nbviewer.ipython.org/github/hackinscience/showoff-pysci/blob/master/showoff-pysci.ipynb">Scientific Computing Course Class</a>
                     </section>
                     <section>
                         <h2>Web Crawling <img src="img/spider.png"></h2>
@@ -441,20 +470,20 @@ list = soup.find_all('li')
 		#finding one element by tag and class name
 		soup.find('h1',{'class':'featured')						
                     </code></pre>
-                    <div class='source'>   And much more in the <a class='source' href='http://www.crummy.com/software/BeautifulSoup/bs4/doc/'>  doc  </a></div>
+                    <div class='source'><a class='source' href='http://www.crummy.com/software/BeautifulSoup/bs4/doc/'> And much more in the doc</a></div>
                     </section>
                     <section>
-						<h2>Firebug</h2>
-                        <br/>
-                        <p>Firebug or Chromebug is a little tool inside your web-browser that will help you to inspect the html
+						<h2>Inspect the webpage</h2>
+                        
+                        <p>Your web browser let's you inspect the <a href="#/8/2">dom</a>
                         and select the value of the data you want to extract </p>
                         <br/>
-                        <span class='symbol'>☞</span> Open Chrome, press F12</li>
+                        <span class='symbol'>☞</span> Open Chrome or Firefox, press F12</li>
                     </section>
                     <section>
-						<h2>From HTML  DOM<span class='symbol top'>🌲</span>span>Descending the DOM</h2>
-                    <h2><span class='symbol top'>🌲</span>span>Descending the DOM</h2>
-                    <p>DOM stands for document mapper. </p>
+						<h2><span class='symbol top'>🌲</span>Manipulating DOM</h2>
+						<p>DOM stands for <b>D</b>ocument <b>O</b>bject <b>M</b>apper.</p>
+						<p></p>
                     </section>
 				</section>
 				<section>
@@ -487,6 +516,7 @@ BBC Science - BBC Science
 					</section>
 					<section>
 						<a href="README.md"> Experiment!</a>
+						
 					</section>	
 				</section>
 				<section>
