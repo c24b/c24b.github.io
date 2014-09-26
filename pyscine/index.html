@@ -258,7 +258,7 @@
                         <h2>Webmining?</h2>
                         <h3>⇩</h3>
                     </section>
-                    <section>
+                    <section id="webmining">
 						<ul>
 						<li><a class='baseline' href="http://en.wikipedia.org/wiki/Web_mining">Webmining</a> is the application of <a href="http://en.wikipedia.org/wiki/Datamining"> data mining</a> techniques to discover patterns from the Web</li>
 						<li>It's also a misused word to say:</li> 
@@ -267,34 +267,24 @@
                         
                     </section>
                     <section id="data scrapping">
-						<h2>Data Scrapping<img src="img/scrapy.png"></h2>
-						<h3>Collect Data</h3>
+						<img src="img/scrapy.png">
+						<h2>Data Scrapping: Collect Data</h2>
                         <ul>
-                            <li>Transform non structured data</li>
-                            <li>into structure dataset</li>
+                            <li>Transform non structured data into structure dataset</li>
                             <li>Output Format:</li>
                             <ul>
-								<li>Files (small datasets):</li>
-								<ul>
-									<li>JSON</li>
-									<li>CSV</li>
-									<li>TEXT????</li>
-								</ul>
+								<li>Files (small datasets): Json, CSV, ...</li>
 							</ul>
 							<ul>
-								<li>Databases (big datasets):</li>
-								<ul>
-									<li>SQL /SQLITE</li>
-									<li>Mongo DB</li>
-									<li>etc..</li>
-								</ul>
+								<li>Databases (big datasets)</li>
 							</ul>
                         </ul>
                     </section>
-					<section>
-                        <h2>Data Mining<img src="img/loupe.png"></h2>
-                        <h3>Finding patterns</h3>
+					<section id="data-mining">
+						<img src="img/loupe.png">
+                        <h2>Data Mining: Finding patterns</h2>
                         <ul>
+							Basic jobs:
                             <li>Anomaly detection</li>
                             <li>Association rule learning </li>
                             <li>Clustering</li>
@@ -302,7 +292,12 @@
                             <li>Regression</li>
                             <li>Summarization</li>
                         </ul>
-                        <span class='symbol'>☞</span> See <a href="http://nbviewer.ipython.org/github/hackinscience/showoff-pysci/blob/master/showoff-pysci.ipynb">Scientific Computing Course Class</a>
+                    <span class='symbol'>☞</span> See Scientific Computing with Python <a href="http://nbviewer.ipython.org/github/hackinscience/showoff-pysci/blob/master/showoff-pysci.ipynb">Class by @h4nt1</a>
+                    </section>
+                    <section>
+                    <h2>Data SCrapping & Data Mining</h2>
+                    <h2>applied to web</h2>
+                    <h3>⇩</h3>
                     </section>
                     <section>
                         <h2>Web Crawling <img src="img/spider.png"></h2>
@@ -388,20 +383,18 @@
                     </section>
                 </section>
 				<section id="4">
-                    <section>
+                    <section id="title">
                         <h2>Requests ? <img src="img/requests.png"></h2>
                         <h3>⇩</h3>
                     </section>
-        
-                    <section>
+                    <section id="req">
                         <h2>Requests</h2>
                         <ul>
                             <li><a href="http://docs.python.org/dev/library/urllib.request.html">urllib</a>: a library that comes with python. Not very handy, different versions in use in python.</li>
                             <li><a href="http://python-requests.org/">Requests</a> takes urllib to present a simple, unified and complete interface</li>
                         </ul>
                     </section>
-
-                    <section>
+                    <section id="req-ex">
                         <h2>Using Requests: example</h2>
                         <pre><code class='snippet exec python' data-trim contenteditable data-noescape>import requests
 
@@ -417,10 +410,10 @@ resultat.status_code
                     </section>
                 </section>
                 <section id="5">
+					<section>
 					<h2>Beautiful Soup? <img src="img/bs.jpg"></h2>	
 					<h3>⇩</h3>
-				</section>
-				<section id="6">
+					</section>
 					<section>
 						<h2>BeautifulSoup</h2>
 							<ul>
@@ -488,7 +481,8 @@ list = soup.find_all('li')
 						<p></p>
                     </section>
 				</section>
-				<section id="7">
+				
+				<section id="6">
 					<section>
                         <h2>Requests <img src="img/requests.png"></h2>
                         <h2>+</h2>
@@ -512,7 +506,7 @@ BBC Science - BBC Science
                     </section>
                 </section>
                 
-				<section id="8">
+				<section id="7">
 					<section>
 						<h3>Now your turn!</h3>
 					</section>
@@ -521,7 +515,7 @@ BBC Science - BBC Science
 						
 					</section>	
 				</section>
-				<section id="9">
+				<section id="8">
 					<h3> Further readings</h3>
 					<ul>Other parsing tools:
 					<li>LXML</li>
