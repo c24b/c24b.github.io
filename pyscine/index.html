@@ -426,10 +426,11 @@ resultat.status_code
 							<ul>
 								<li>Let's you find the data using html selectors and css class</li>
 								<li>Avoid to use the syntax of <a href="#/6/1"> XPath</a></li>
+								<li>Navigate inside the DOM representation of the webpage</li>
 							</ul>
 					</section>
 					<section>
-						<h2>Using BeautifulSoup: example</h2>
+						<h3>Using BeautifulSoup: example</h3>
 							<pre><code class='snippet exec python' data-trim contenteditable data-noescape>from bs4 import BeautifulSoup
 doc = """
 &lt;html&gt;&lt;body&gt;
@@ -454,9 +455,9 @@ list = soup.find_all('li')
 [premier li,deuxieme li]
 						</code></pre>
 						<div class='source'>   <a class='source' href='examples/beautifulsoup-intro.py'>  source  </a></div>
-                </section>
+					</section>
 					<section>
-						<h2>Using BeautifulSoup: example (2)</h2>
+						<h3>Using BeautifulSoup: example (2)</h3>
 						BeautifulSoup let's you access the html element by tag, class, next and previous
 						<pre><code class='snippet exec python' data-trim contenteditable data-noescape>
 #finding first element with tag &lt;h1&gt;
