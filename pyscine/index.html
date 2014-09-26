@@ -250,7 +250,7 @@
                     <ul>
                         <li><a href="#/2">Webmining?</a></li>
                         <li><a href="#/3">Tools</a></li>
-                        <li><a href="#/4">A concrete example</a></li>
+                        <li><a href="#/4">A concrete example of webscraping</a></li>
                     </ul>
                 </section>
                 <section>
@@ -338,7 +338,7 @@
                                     <ul>
 										<li><a href="#/6">Lxml</a></li>
                                         <li><a href="#/6/1">XPaths</a></li>
-                                        <li><a href="#/5/2">CSS Selectors</a></li>
+                                        <li><a href="#/5/2">HTML and CSS Selectors</a></li>
                                         
                                     </ul>
                                 </td>
@@ -347,7 +347,7 @@
                                     <ul>
 										<li><a href="#/8">CSV</a></li>
                                         <li><a href="#/9">JSON</a></li>
-                                        <li><a href="#/1O">Database></a></li>
+                                        <li><a href="#/1O">Database</a></li>
                                     </ul>
                                 </td>
                         </table>
@@ -362,13 +362,13 @@
                     <section>
                         <h2>Requests</h2>
                         <ul>
-                            <li><a href="http://docs.python.org/dev/library/urllib.request.html">urllib</a>: bibliothèque fournie avec python. Peu pratique, plusieurs versions fournies avec les différentes versions de Python.
-                            <li><a href="http://python-requests.org/">Requests</a> enveloppe urllib pour présenter une interface unifiée, simple, et complète</li>
+                            <li><a href="http://docs.python.org/dev/library/urllib.request.html">urllib</a>: a library that comes with python. not very handy, different versions in use.
+                            <li><a href="http://python-requests.org/">Requests</a> takes urllib to present a simple, unified and complete interface</li>
                         </ul>
                     </section>
 
                     <section>
-                        <h2>Exemple d'utilisation de Requests</h2>
+                        <h2>Using Requests: example</h2>
                         <pre><code class='snippet exec python' data-trim contenteditable data-noescape>import requests
 
 url = "http://fr.wikipedia.org/wiki/Araignée"
@@ -385,13 +385,38 @@ resultat.status_code
                 <section>
 				<h2>Beautiful Soup? <img src="img/bs.jpg"></h2>	
                 <h3>⇩</h3>
-				</section>
-				<section>
-					<h2>BeautifulSoup</h2>
-                        <ul>
-                            <li><a href="www.crummy.com/software/BeautifulSoup/bs4/doc/">BeautifulSoup</a>: est un module d'extraction de page html très simple</li>
-                            <li>mais il en existe plein d'autres ...</li>
-                        </ul>
+				
+					<section>
+						<h2>BeautifulSoup</h2>
+							<ul>
+								<li><a href="www.crummy.com/software/BeautifulSoup/bs4/doc/">BeautifulSoup</a>: is a module to explore and extract html and xml the simplest to use for first time</li>
+								<li>Avoid you to manipulate webpage using the syntax of<a href="#/6/1">XPath</a></li>
+							</ul>
+					</section>
+					<h2>Using BeautifulSoup: example</h2>
+                        <pre><code class='snippet exec python' data-trim contenteditable data-noescape>from bs4 import BeautifulSoup
+doc = """
+&lt;html&gt;&lt;body&gt;
+&lt;title&gt;Hello World&lt;/title&gt;
+  &lt;ul class='container'&gt;
+      &lt;li id='li-1'&gt;premier li&lt;/li&gt;
+      &lt;li id='li-2'&gt;deuxieme li&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/body&gt;&lt;/html&gt;
+"""
+# Create a document from a string
+soup = BeautifulSoup(doc)
+
+# Select the element
+title = soup.title
+text_title = soup.title.text
+#Find all elements
+list = soup.find_all('li')
+>>>print list
+</code>
+<code class=' result'>[<li id="li-1">premier li</li>, <li id="li-2">deuxieme li</li>]</code>
+</pre>
+                    </section>
 				</section>
 				<section>
 					XPath
