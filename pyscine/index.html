@@ -277,7 +277,7 @@
                         <h2>Web Crawling <img src="img/spider.png"></h2>
                         <ul>
                             <li>Web: data not well structured</li>
-                            <li>Structure: text, links between pages, visuall structure</li>
+                            <li>Structure: text, links between pages, visual structure</li>
                             <li>Usage: reading, textual search engine, study of relationships</li>
                             <li>No need to know the website: following the links blind</li>
                         </ul>
@@ -336,7 +336,7 @@
                                 <td></td>
                                 <td>
                                     <ul>
-										<li><a href="#/6">Lxml</a></li>
+										
                                         <li><a href="#/6/1">XPaths</a></li>
                                         <li><a href="#/5/2">HTML and CSS Selectors</a></li>
                                         
@@ -362,7 +362,7 @@
                     <section>
                         <h2>Requests</h2>
                         <ul>
-                            <li><a href="http://docs.python.org/dev/library/urllib.request.html">urllib</a>: a library that comes with python. not very handy, different versions in use.
+                            <li><a href="http://docs.python.org/dev/library/urllib.request.html">urllib</a>: a library that comes with python. Not very handy, different versions in use in python.</li>
                             <li><a href="http://python-requests.org/">Requests</a> takes urllib to present a simple, unified and complete interface</li>
                         </ul>
                     </section>
@@ -398,27 +398,31 @@ resultat.status_code
 				<section>
 					<h2>Using BeautifulSoup: example</h2>
                         <pre><code class='snippet exec python' data-trim contenteditable data-noescape>from bs4 import BeautifulSoup
-doc = """
-&lt;html&gt;&lt;body&gt;
-&lt;title&gt;Hello World&lt;/title&gt;
-  &lt;ul class='container'&gt;
-      &lt;li id='li-1'&gt;premier li&lt;/li&gt;
-      &lt;li id='li-2'&gt;deuxieme li&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/body&gt;&lt;/html&gt;
-"""
-# Create a document from a string
-soup = BeautifulSoup(doc)
+								doc = """
+								&lt;html&gt;&lt;body&gt;
+								&lt;title&gt;Hello World&lt;/title&gt;
+								  &lt;ul class='container'&gt;
+									  &lt;li id='li-1'&gt;premier li&lt;/li&gt;
+									  &lt;li id='li-2'&gt;deuxieme li&lt;/li&gt;
+								  &lt;/ul&gt;
+								&lt;/body&gt;&lt;/html&gt;
+								"""
+								# Create a document from a string
+								soup = BeautifulSoup(doc)
 
-# Select the element
-title = soup.title
-text_title = soup.title.text
-#Find all elements
-list = soup.find_all('li')
->>>print list
-</code>
-<code class=' result'>[<li id="li-1">premier li</li>, <li id="li-2">deuxieme li</li>]</code>
-</pre>
+								# Select the element
+								title = soup.title
+								text_title = soup.title.text()
+								>>>print text_title
+								</code>
+								<code class=' result'>Hello World</code>
+								<code class='snippet exec python' data-trim contenteditable data-noescape>
+								#Find all elements
+								list = soup.find_all('li')
+								>>>print list
+								</code>
+								<code class=' result'>[<li id="li-1">premier li</li>, <li id="li-2">deuxieme li</li>]</code>
+						</pre>
                 </section>
 				</section>
 				<section>
