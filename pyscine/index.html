@@ -250,6 +250,12 @@
                     <ul>
                         <li><a href="#/2">Webmining?</a></li>
                         <li><a href="#/3">Tools</a></li>
+							<ul>
+								<li><a href="#/4">Requests</a></li>
+								<li><a href="#/5">BeautifulSoup</a></li>
+								<li><a href="#/6">DOM Inspector</a></li>
+								<li><a href="#/7">Requests + BeautifulSoup</a></li>
+							</ul>
                         <li><a href="#/4">Workshop</a></li>
                     </ul>
                 </section>
@@ -449,40 +455,22 @@ list = soup.find_all('li')
 						<div class='source'>   <a class='source' href='examples/beautifulsoup-intro.py'>  source  </a></div>
                 </section>
 					<section>
-                    <h2>Beautiful Soup : Selecting html tags (2/2)</h2>
-                    BeautifulSoup let's you access the html element by tag, class, next and previous
+						<h2>Using BeautifulSoup: example (2)</h2>
+						BeautifulSoup let's you access the html element by tag, class, next and previous
                     <pre><code class='snippet exec python' data-trim contenteditable data-noescape>
-		#finding first element with tag &lt;h1&gt;
-		soup.find('h1')
-		#finding next element with tag &lt;h3&gt;
-		first = soup.find('h2')
-		second = first.next_sibling
-		#finding all links
-		soup.find_all('a')
-		#finding one element by tag and class name
-		soup.find('h1',{'class':'featured')						
+#finding first element with tag &lt;h1&gt;
+soup.find('h1')
+#finding next element with tag &lt;h3&gt;
+first = soup.find('h2')
+second = first.next_sibling
+#finding all links
+soup.find_all('a')
+#finding one element by tag and class name
+soup.find('h1',{'class':'featured')						
                     </code></pre>
                     <div class='source'><a class='source' href='http://www.crummy.com/software/BeautifulSoup/bs4/doc/'> And much more in the doc</a></div>
                     </section>
-                    <section>
-						<h2>Inspect the webpage</h2>
-                        <p>Your web browser let's you inspect the <a href="#/8/2">dom</a>
-                        and select the value of the data you want to extract </p>
-                        <br/>
-                        <span class='symbol'>☞</span> Open Chrome or Firefox, press F12</li>
-                    <section>
-                        <img src="img/examine.png">
-                    </section>
-				</section>
-				<section id="6">
-					<section>
-						<h2><span class='symbol top'>🌲</span>Manipulating DOM</h2>
-						<p>DOM stands for <b>D</b>ocument <b>O</b>bject <b>M</b>apper.</p>
-						<p></p>
-                    </section>
-				</section>
-				
-				<section id="7">
+                 <section id="6">
 					<section>
                         <h2>Requests <img src="img/requests.png"></h2>
                         <h2>+</h2>
@@ -505,6 +493,29 @@ BBC Science - BBC Science
 						</code></pre>
                     </section>
                 </section>
+                 <section id="7">
+					<section>
+						<h2>DOM Inspector?</h2>
+						<h3>⇩</h3>
+					</section>
+					<section>
+						<p>DOM stands for <b>D</b>ocument <b>O</b>bject <b>M</b>apper.</p>
+					HTML >> DOM
+					Here explain parse tree
+					</section>
+					<section>
+					<h2>Using Webbrowser Code Inspector: demo</h2>
+                        <p>Your web browser let's you inspect the <a href="#/8/2">dom</a>
+                        and select the value of the data you want to extract </p>
+                        <br/>
+                        <span class='symbol'>☞</span> Open Chrome or Firefox, press F12</li>
+                    </section>
+                    <section>
+                        <img src="img/examine.png">
+                    </section>
+				</section>
+				
+				
                 
 				<section id="8">
 					<section>
