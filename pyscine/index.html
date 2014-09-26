@@ -409,15 +409,14 @@ doc = """
 """
 # Create a document from a string
 soup = BeautifulSoup(doc)
-
 # Select the element
 title = soup.title
 text_title = soup.title.text()
->>>print text_title
+>>>print(text_title)
 'Hello World'								
 #Find all elements
 list = soup.find_all('li')
->>>print list
+>>>print(list)
 [premier li,deuxieme li]
 						</code></pre>
                 </section>
