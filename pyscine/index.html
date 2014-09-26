@@ -299,7 +299,7 @@
                     <p><span class='symbol'>☞</span>See <a href="http://nbviewer.ipython.org/github/hackinscience/showoff-pysci/blob/master/showoff-pysci.ipynb">Scientific Computing</a> tutorial by <a href="www.twitter.com/mazieres">@h4nt1</a></p>
                     </section>
                     <section>
-                    <h2>Data SCrapping & Data Mining</h2>
+                    <h2>Data Mining & Data Scrapping</h2>
                     <h2>applied to web</h2>
                     <h3>⇩</h3>
                     </section>
@@ -313,7 +313,7 @@
                         </ul>
                     </section>
                     <section>
-                        <h2>Web Scraping</h2>
+                        <h2>Web Scraping <img src="img/scrapy.png"></h2>
                         <ul>
                             <li>Hidden structure: mostly a database beside the website</li>
                             <li>A page: one fragment of this database</li>
@@ -329,9 +329,9 @@
                             <tr>
                                 <td><span class='symbol top'>&#9729;</span>Internet</td>
                                 <td></td>
-                                <td><span class='symbol top'>⇅</span>téléchargement</td>
+                                <td><span class='symbol top'>⇅</span>download</td>
                                 <td></td>
-                                <td><span class='symbol left'>🔤</span>chaîne de caractères</td>
+                                <td><span class='symbol left'>🔤</span>string</td>
                                 <td></td>
                                 <td><span class='symbol left'>🌲 </span>document (DOM)</td>
                                 <td></td>
@@ -362,16 +362,16 @@
                                     <ul>
 										
                                         <li><a href="#/5">BeautifulSoup</a></li>
-                                        <li><a href="#/5">HTML5</a></li>
-                                        <li><a href="#/7">Regular Expressions</a></li>
+                                        <li><a href="#/11">HTML5Lib</a></li>
+                                        <li><a href="#/12">Regular Expressions</a></li>
                                     </ul>
                                 </td>
                                 <td></td>
                                 <td>
                                     <ul>
-										<li><a href="#/8/1">LXML</a></li>
-                                        <li><a href="#/6/1">XPaths</a></li>
-                                        <li><a href="#/5/2">HTML and CSS Selectors</a></li>
+										<li><a href="#/7/2">LXML</a></li>
+                                        <li><a href="#/7/1">XPaths</a></li>
+                                        <li><a href="#/7">HTML and CSS Selectors</a></li>
                                         
                                     </ul>
                                 </td>
@@ -471,7 +471,6 @@ soup.find_all('a')
 soup.find('h1',{'class':'featured')						
                     </code></pre>
 						<div class='source'><a class='source' href='http://www.crummy.com/software/BeautifulSoup/bs4/doc/'> And much more in the doc</a></div>
-						<blockquote>But How do I know which tag class I should extract?</blockquote>
                     </section>
                  
                  </section>
@@ -496,17 +495,28 @@ soup.find('h1',{'class':'featured')
 >>>print(soup.title.text)
 BBC Science - BBC Science
 						</code></pre>
+						<blockquote>But How do I know which tag or class I should extract?</blockquote>
                     </section>
                 </section>
                  <section id="7">
 					<section>
-						<h2>DOM Inspector?</h2>
+						<h2>DOM Inspector</h2>
 						<h3>⇩</h3>
 					</section>
 					<section>
 						<p>DOM stands for <b>D</b>ocument <b>O</b>bject <b>M</b>apper.</p>
-					HTML >> DOM
-					Here explain parse tree
+						<p>DOM is a standard that represent and store HTML or XML documments in a tree representation</p>
+						<tbody>
+						<tr>
+                        <td><span class='symbol left'>🔤</span>string</td>
+                        <td></td>
+                        <td><span class='symbol left'>🌲 </span>document (DOM)</td>
+                        <td></td>
+                        <td><pre>"&lt;html&gt;"</pre></td>
+                                <td>⇢</td>
+                                <td><pre>&lt;html&gt;<br>&nbsp;&nbsp;&lt;body&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;</pre></td>
+						</tr>
+						</tbody>
 					</section>
 					<section>
 					<h2>Using Webbrowser Code Inspector: demo</h2>
@@ -514,14 +524,11 @@ BBC Science - BBC Science
                         and select the value of the data you want to extract </p>
                         <br/>
                         <span class='symbol'>☞</span> Open Chrome or Firefox, press F12</li>
-                    </section>
+                    
                     <section>
                         <img src="img/examine.png">
                     </section>
-				</section>
-				
-				
-                
+				</section>      
 				<section id="8">
 					<section>
 						<h3>Now your turn!</h3>
