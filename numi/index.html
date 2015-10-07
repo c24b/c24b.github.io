@@ -1,14 +1,15 @@
 <!doctype html>
 <html lang="en">
 
-    <head>
+<head>
         <meta charset="utf-8">
 
-        <title>PyWebMining</title>
+        <title>MASTER NUMI: Fouille des données du web</title>
 
         <meta name="author" content="Constance de Quatrebarbes">
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        
 
         <link rel="stylesheet" href="css/reveal.css">
         <link rel="stylesheet" href="css/theme/default.css" id="theme">
@@ -20,7 +21,16 @@
         <script>
             document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
         </script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <!-- Fontawesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <!--[if lt IE 9]>
         <script src="lib/js/html5shiv.js"></script>
         <![endif]-->
@@ -227,6 +237,18 @@
                 width: 80px;
             }
 
+            mark {
+                border-radius: 2px;
+                display: inline-block;
+                background-color: #f08a24;
+                color: #fff;
+            }
+            li.index {
+                list-style-type:none;
+            }
+            li.index:before {
+                content: "\261E  ";
+            }
         </style>
     </head>
 <body>
@@ -234,89 +256,471 @@
             <!-- Any section element inside of this container is displayed as a slide -->
             <div class="slides">
                 <section id="0">
-                    <h3>Introduction</h3>
-                    <h3>à la fouille et l'analyse</h3>
-                    <h3>des données du </h3>
-                    <h2>Web </h2>
-                    
-                    <span><img src="img/spider.png" /></span>
-                    <br />
-                    <span>MASTER NUMI (2015)
-                    <br />
-                    Elise Tancoigne et Constance de Quatrebarbes</span>
+                    <div class="row">
+                    <div class="col-md-2">
+                        
+                    </div>
+                    <div class="col-md-8">
+                        <img src="img/spider.png" />
+                        <h3>Introduction</h3>
+                        <h3>à la fouille et l'analyse</h3>
+                        <h3>des données du WEB</h3>
+                        
+                        <small>MASTER NUMI (2015)</small>
+                        <br>
+                        <small>Elise Tancoigne et Constance de Quatrebarbes</small>
+                    </div>
+                    <div class="col-md-2">
+                        
+                    </div>
                 </section>
                 <section id="1">
-                    <h2>Internet et le Web</h2>
+                    
+                    <h2>Un peu de théorie et de contexte:</h2>
                     <ul>
-                        <li><a href="#/2">Internet?</a></li>
-                        <li><a href="#/3">Site "Web"?</a></li>
-                            <ul>
-                                <li><a href="#/3/1">Ma première page HTML</a></li>
-                                <li><a href="#/3/2">Initiation au web scrapping</a></li>
-                                <ul>
-                                    <li><a href="#/3/5">Web scrapping</a></li>
-                                    <li><a href="#/3/6">Data mining </a></li>
-                                    <li><a href="#/3/7">Pour aller plus loin ...</a></li>
-                                </ul>
-                            </ul>
-                        <li><a href="#/4">Les "versions" du web</a></li>
-                        
+                        <li class="fragment"><h5><a href="/2" >Internet</a></h5></li>
+                        <li class="fragment"><h5><a href="/2" >Les protocoles</a></h5></li>
+                        <li class="fragment"><h5 >HTTP et Le world wide web</h5></li>
+                        <li class="fragment"><h5 >Le site web</h5></li>
+                        <li class="fragment"><h5 >La page HTML</h5></li>
+                        <h2 class="fragment"><h5 ><mark>Travaux Pratiques !</mark> Lire le HTML - Fouiller une page web</h5></h2>
+                        <li class="fragment"><h5 >Les différentes "versions" du web</h5></li>
+                        <li class="fragment"><h5 >Les données nativement numériques</h5></li>
+                        <li class="fragment"><h5 >Showcase</h5></li>
                         
                     </ul>
+                    
                 </section>
-                
                 <section id="2">
-                    <section>
+                    <section id="2/1">
                         <h2>Comment marche Internet?</h2>
                         <h3>⇩</h3>
                     </section>
-                    
-                    <section>
-                        <section>
-                        De quoi a-t-on besoin pour se connecter à l’Internet?
+                    <section id="2/2">
+                        <h3>De mon ordinateur à la page web</h3>
                         
-                        </section>
-                        <section>
-                            Shema d'un réseau domestique simple
-                        </section>
-                    </section>
-                    
-                    <section>
-                        <section>
-                        Un réseau décentralisé
-                        
-                        </section>
-                        <section>
-                            Des serveurs reliés entre eux par des cables qui partagent un protocole commun de communication
-                        </section>
-                        <section>
-                            Les protocoles de communication
-                        </section>
+                        <img src="./img/full_traj.png" />
+                        <blockquote> Avec un schema au tableau c'est mieux ...</blockquote>
                     </section>
                 </section>
+                    
                 <section id="3">
-                    <section>
-                        <h2>Comment marche un site web?</h2>
-                        <h3>⇩</h3>
-                    </section>
-                    <section>
-                    </section>
-                    <section>
-                    </section>
+                    <div class="row">
+                        <h3>&#x2302; Intranet - A la maison &#x2302;</h3>
+                        <div class="col-md-6">
+                            <blockquote> Pour Internet, on a besoin de:</blockquote>
+                            <ul>
+                                <li>Un ordinateur </li>
+                            
+                                <li>Un <mark>FAI </mark>:<br>
+                                <small>(Fournisseur d'Accès Internet)</small>
+                                <ul>
+                                <li>soit l'abonnemement auprès d'un opérateur téléphonique 
+                                <small>(offre analogique, GSM ou optique)</small>
+                                </li>
+                            
+                                <li>et le <mark>routeur</mark>: <small>la fameuse "box" Internet appelée aussi <mark>modem
+                                </mark></small></li>
+                                </ul>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <img src="./img/schema.png" />
+                            <blockquote>le FAI qui nous donne accès à Internet</blockquote>
+                        </div>
+                    </div>
                 </section>
-                 <section id="4">
-                    <section>
-                        <h2>Les "versions" du web</h2>
-                        <h3>⇩</h3>
-                        <span>Et 1, et 2  et 3.0! </span>
-                    </section>
-                    <section>
-                    </section>
-                    <section>
-                    </section>
+                <section id="4">
+                    <div class="row">
+                        <h3>&#x2601; Internet = <mark>Inter</mark><s>connected</s><mark>Net</mark><s>work</s> &#x2601;</h3>
+
+                        <div class="col-md-5">
+                            <ul>
+                                <li class="index fragment">Un réseau mondial d'ordinateurs</li>
+                                <small class="fragment">qui ont tous une <mark>adresse IP</mark> unique</small>
+                                <li class="index fragment">qui émettent et reçoivent des données</li>
+                                <small class="fragment">sous forme de <mark>packets</mark></small>
+                                <li class="index fragment">en suivant un même protocole de communication</li>
+                                <small class="fragment">la "famille" <mark>TCP/IP</mark></small>
+                            </ul>
+                    </div>
+                    <div class="col-md-7">
+                        <img src="./img/tcpip.png" />
+                    </div>
+                </section>
+                </section>
+                <section id="5">
+                <h3>&#x2601; Internet = <mark>Inter</mark><s>connected</s><mark>Net</mark><s>work</s> &#x2601;</h3>
+
+                        
+                            <ul>
+                                <li class="fragment">Un réseau mondial d'ordinateurs
+                                
+                                <span class="fragment">avec  une <mark>adresse IP</mark> unique</span>
+                                <span class="fragment">(c'est à dire une <u>adresse physique</u>)</span>
+                                </li> 
+                            </ul>
+                            <div class="col-md-6">
+                            <blockquote class="index fragment"> Des <a href="http://www.datacentermap.com/">serveurs</a> partout dans le monde
+                                reliés par des <a href="http://submarine-cable-map-2014.telegeography.com/">câbles</a></blockquote>
+                                
+                            </div>
+                            <div class="col-md-6">
+                            <img src="./img/datacentermap.png" />
+                            </div>
+                </section>
+                <section id="6">
+                <h3>&#x2601; Internet = <mark>Inter</mark><s>connected</s><mark>Net</mark><s>work</s> &#x2601;</h3>
+                
+                
+                            <ul>
+                                
+                                <li class="index fragment">Des serveurs qui émettent et reçoivent des données</li>
+                                <span class="fragment">sous forme de <mark>packets</mark>
+                                <div class="col-md-6">
+                                    
+                                    <span class="fragment"> <img src="./img/pingpong.png" /></span>
+                                </div>
+                                <div class="col-md-6">
+                            
+                                <li class="index fragment">en suivant un même protocole de communication
+                                <small>de la "famille" <mark>TCP/IP</mark><br>soit une adresse IP et un ensemble de règle d'échanges des données</small></li>
+                                
+                            </ul>
+
+                </section>
+
+                <section id="7">
+                <h3>&#9742; Qu'est ce qu'un protocole &#9742;</h3>
+                    <div class="row">
+                    <div class="col-md-6">
+                        
+                            Un <mark>protocole de communication</mark> est composé :
+                            <ul>
+                                <li>d'un émetteur</li>
+                                <li>d'un récepteur</li>
+                                <li>et un ensemble de règles minimales</li>
+                                <li>pour émettre et recevoir des données</li>
+                                
+                            </ul>
+                        <blockquote>&#x261e; un protocole de communication transforme ainsi un <u>signal</u> en <u>information</u></blockquote>
+                            
+                    </div>
+                    <div class="col-md-6">
+                        
+                        <img src="./img/pingpong.png" />
+                        <blockquote>&#x261e; 
+                        le protocole TCP/IP permet aux ordinateurs de communiquer entre eux
+                        </blockquote>
+                    </div>
+                </section>
+
+
+                <section id="8">
+            
+                    <h3>&#9742; Les Protocoles &#9742;</h3>
+                    
+                    <blockquote>Il existe des dizaines de <mark>protocoles de communication</mark> 
+                    différents qui utilisent le réseau Internet de la famille de TCP/IP</blockquote>
+                    
+                        <ul>                                
+                            <li>HTTP, HTTPS</li>
+                            <li>SMTP, POP3 </li>
+                            <li>FTP, P2P</li>
+                            <li>SSH, TelNet</li>
+                            <li>UDP, IRC</li>
+                        </ul>
+                    
+                    <ul>
+                        <li>WIFI</li>
+                        <li>Bluetooth</li>
+                        <li>RFID</li>
+                        <li>GSM </li>
+                    </ul>
+                    
+                    <ul>
+                        <li>Cable optique</li>
+                        <li>Cable analogique</li>
+                        <li>Ethernet</li>
+                        <li>Token</li>
+                    </ul>
+                    <ul>
+                        <li>Etc etc etc...</li>
+                    </ul>
                 </section>
                 
-            </div>
+                <section id="9">
+                    <center>
+                    Parmi lesquels le fameux <span class="fragment"><mark>HTTP</mark>
+                    
+                    <br>
+                    <h2><mark>H</mark>yper<mark>T</mark>ext <mark>T</mark>ransfer <mark>P</mark>rotocol</h2>
+                    <br>
+                    <blockquote>Celui qui sert pour servir des pages web...</mark>
+                    </blockquote>
+                    <p></p>
+                </section>
+                <section> <H2>HTTP et le web</H2>
+                <div class="col-md-5">
+                <blockquote>
+                    <ul>Depuis mon navigateur:
+                    <li>PING <br><small>online ping demo</small></li>
+                    <li>Whois et Résolution de DNS<br><small><a href="https://www.whois.net">Whois Online Tool</a>/</small></li>
+                    <li>Traceroute <br><small><a href="http://www.monitis.com/traceroute/">Visual Traceroute tool</a></small></li>
+                    
+                    
+                    </ul>
+                </blockquote>
+                </div>
+                <div class="col-md-7">
+                    <img src="./img/full_traj.png" />
+                </div>
+                </section>
+                <section id="10">
+                    
+                    <h3>Le World Wide Web</h3>
+                    <div class="col-md-5">
+                    <ul>Le web est donc:
+                    <li><mark>réseau de documents</mark></li> 
+                    <li>disponible à une adresse <mark>URL</mark></li>
+                    <li>stockées sur des serveurs </li>
+                    <li>connectés à Internet </li>
+                    </ul>
+                    </div>
+                    <div class="col-md-7">
+                    <img src="./img/full_traj.png"/>
+                    </div>
+                </section>
+                
+
+                <section id="11">
+                    <section>
+                        Comment marche un site Internet?
+                        <h3>⇩</h3>
+                    </section>
+                    <section>
+                        <img scr="web_server_schema.png">
+                    </section>
+                </section>
+                <section id="12">
+                        <h2>Architecture client/serveur</h2>
+                        <div class="col-md-7">
+                            <ul>
+                                <li>Un client: ordinateur + navigateur</li>
+                                <li>Un serveur web: avec des fichiers statiques, des fichiers dynamiques + une base de données</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-7">
+                            <img scr="web_server_schema.png">
+                        </div>
+                
+                </section>
+                <section id="13">
+                        <h2>Les différents éléments d'un site web </h2>
+                        
+                        
+                        <p>
+                            <ul>Fichiers statiques:
+                            <li>Le <mark>HTML</mark> est un langage de présentation avec des balises qui hiérarchisent le texte et affichent les hyperliens</li>
+                        <li>Le <mark>CSS</mark> permet l'affichage de couleurs et la mise en forme</li>
+                        <li>Le <mark>Javascript</mark> permet d'ajouter des animations* </li>
+                        </p>
+                    
+            </section>
+            <section id="14">
+                    <h2>Les différents éléments d'un site web </h2>
+                    <blockquote>
+                    <ul>Fichiers dynamiques:
+                    <ul>Un langages de programmation (PHP, Ruby, .NET, Python, etc...) permet de construire:
+                    <li>les appels en base de données</li>
+                    <li>la localisation des pages</li>
+                    <li>de faire un peu de calcul ...</li>
+                    </ul>
+                    </ul>
+                    </blockquote>
+            </section>
+            
+            <section id="15">
+                <h2>Les différentes "versions" du Web</h2>            
+                <ol>
+                    <li> Le web 1.0: <br>
+                    <small>
+                    un réseau de documents reliés entre eux par des hyperliens disponibles à une adresse
+                    </small>
+                    </li>
+                    <li>Le web 2.0: <br>
+                    <small>
+                    Une révolution des usages avec l’ajout d’une couche dynamique: un réseau de personnes
+                    <p>L’avènement des réseaux sociaux et la difficile définition de communauté</p>
+                    <p>Un web de personnes et le profil social</p>
+                    </small>
+                    </li>
+                    <li> Le web 3.0? <br>
+                    <small>
+                    Le web intelligent et les objets connectés: un réseau d’objets physiques
+                    </small>
+                    <small>
+                    Le web sémantique: un réseau de sens (données contextualisées et hiérarchisées)
+                    </small>
+                    Le web augmenté: intelligence artificielle et Big Data: (la place de l'algorithme et des processus de traitement des données)
+                    > Exemple du cas Amazon
+                    Un web de calcul et la donnée
+                    </li>
+                </ol>
+            </section>
+    
+            <section id="16">
+                    
+                        <h2>Une page HTML</h2>
+                    
+                            
+                        <!-- Code Example -->
+                          <pre><code>
+                            &lt;html&gt;
+                                &lt;head&gt;
+                                    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+                                    &lt;meta charset=&quot;utf-8&quot;&gt;
+                                    &lt;meta name=&quot;description&quot; content=&quot;Une demonstration d'une page HTML (HyperText Markup Language).&quot;&gt;</strong>
+                                &lt;/head&gt;
+                                &lt;body&gt;
+                                    Hello World!
+                                    Ceci est le contenu d'une page html avec des balises
+                                    &lt;div&gtComme des boites qui organisent et présentent le contenu &lt;div&gt 
+                                    &lt;h1&gt; Ceci est un titre (h1 pour headline1) &lt;/h1&gt;
+                                    &lt;p&gt; Ceci est un paragraphe &lt;/p&gt;
+                                    &lt;a href=&quot;http://info.cern.ch/hypertext/WWW/TheProject.html&quot; &gt;ceci est le lien hypertexte qui renvoie vers la première page HTML de l'histoire du web&lt;/p&gt;
+                                &lt;/body&gt;
+                            &lt;/html&gt;
+                        </pre>
+                        </code>
+                        <p>Voir le <a href="./helloworld.html">résultat dans le navigateur</a></p>
+                        
+                        
+                </section>
+                <section id="17">
+                    Afficher le code source d'une page HTML:
+                    <ul>
+                        <li>Pour Firefox et Chrome:</li>
+                        <br><span class="key">Ctrl</span>+ U
+                        <li>Pour Safari:</li>
+                        <br><span class="key">Ctrl</span>+<span class="key">&#x21E7;</span>+U</li><br>
+                        <br><code>Alt</code>+<code>⌘</code>+<code>U</code>
+                    </ul>
+                </section>
+                <section id="18">
+              
+                    <h3>L'inspecteur Web</h2>             
+                    <p>Dans votre navigateur, on trouve un outil qui permet d'inspecter le code source de la page et selectionner 
+                    la balise qui vont intéresse
+                    Pour l'ouvrir
+                    </p>
+                    <small>
+                    <div class="row">
+                    <div class="col-md-3">
+                        <span class="fragment"><h5>Chrome</h5>
+                            <ul>
+                                <li>Presser la touche <span class="key">F12</span></li>
+                                <li>Presser les touches: <span class="key">Ctrl</span>+<span class="key">&#x21E7;</span>+I</li>
+                                <li>Dans le menu: Outils > Outils de développement</li>
+                            </ul>
+                            </span>
+                    </div>
+        <div class="col-md-3">
+        
+            <span class="fragment"><h5>Safari</h5>
+            <ul>
+                <li>Dans la barre de menus : Menu Développement > Afficher l'inspecteur web</li>
+                <li>Si le menu Développement n’apparaît pas dans la barre des menus, choisissez Safari > Préférences, cliquez sur Avancées, puis cochez la case.</li>
+            </ul>
+            </span>
+        </div>
+        <div class="col-md-3">
+            <span class="fragment"><h5>Firefox</h5>
+            <ul>
+            <li>Presser la touche <span class="key">F12</span></li>
+                <li>Presser les touches: <span class="key">Ctrl</span>+<span class="key">&#x21E7;</span>+<span class="key">S</span></li>
+                <li>Dans la barre de menus : Outils > Développment web > Debogeur</li>
+            </ul>
+            </span>
+        </div>
+        <div class="col-md-3">
+            <span class="fragment"><h5><s>Sous Internet Explorer</s></h5>
+            Changez de navigateur!
+            </span>
+            
+        </div>
+        </div>
+        </small>
+                </section>
+                <section id="19">
+                <h3>Les différentes versions du web</h3>
+                <ul>
+                    <li>Web 1.0:</li>
+                    <li>Web 2.0</li>
+                    <li>Web 3.0</li>
+                </ul>
+                </section>
+                <section id="20">
+                <h3>Les données nativement numériques</h3>
+                <ul>Les données nativement numériques <br>
+                se caractérisent par leur <u>diversité</u>:
+
+                    <li>Protocoles:<br><small>HTTP, SMTP, POP, TelNet, UPNP, 3G, 4G+, etc. </small></li>
+                    <li>Sources:<br><small>capteurs, serveurs, téléphones, GPS, satellites, etc.</small></li>
+                    <li>Format:<br><small>HTML, XML, CSV, TXT, BDD, logs, etc.</small></li>
+                    <li>Structure:<br><small>tableaux, arbres, graphes</small></li>
+                    <li>Contenus:<br><small>mesures numériques, textes, relations, noeud et liens, clicks, code source de programme </small></li>
+                </ul>
+                </section>
+                <section id="21">
+                <h3>Les données nativement numériques</h3>
+                <ul>Ces données impliquent aussi un type d'analyse particulier 
+                <br>et des méthodes empruntées à d'autres disciplines:
+
+                    <li>Analyse de contenus textuels:<br>
+                        <div class="col-md-6">
+                        Sociologie des discours et analyse de l'opinion
+                        </div>
+                        <div class="col-md-6">
+                        <small>Linguistique computationnelle</small>
+                        </div>
+                    </li>
+                    <li>Analyse des structures et des liens :<br>
+                    <div class="col-md-6">
+                    Sociologie des acteurs et des réseaux<br>
+                    </div>
+                    <div class="col-md-6">
+                    <small>Théorie des graphes</small></div></li>
+                    
+                    
+                    <li>Analyse des usages:<br><div class="col-md-6">Sociologie des usages</div><div class="col-md-6"><small>Statistiques</small></div></li>
+                    <li>Analyse des traitements et méthodes:<br><div class="col-md-6">Sociologie des techniques</div><div class="col-md-6"><small>Computer Sciences</small></div></li>
+                    
+                </ul>
+                </section>
+                <section id="22">
+                    <h2>Showcase: </h2>
+                    <h3>que faire avec toutes ses données?</h3>
+                    
+                </section>
+                <section>
+                    <h4>Cartographier les relations entre les philosophies des lumières</h4>
+                    <p><a href="http://republicofletters.stanford.edu/publications.html">La république des lettres</a></p>
+                    
+                </section>
+                <section>
+                    <h4>Explorer le territoire et ses traces numériques</h4>
+                    <p><a href="http://wearedata.watchdogs.com/start.php?locale=fr-FR&city=paris">Paris et ses données</a></p>
+                    
+                </section>
+                <section>
+                    <h4>Explorer le territoire et ses traces numériques</h4>
+                    <p><a href="http://wearedata.watchdogs.com/start.php?locale=fr-FR&city=paris">Paris et ses données</a></p>
+                    
+                </section>
+                <section>
+                    <h4>Visualiser les migrations</h4>
+                </section>
         </div>
         <script src="lib/js/head.min.js"></script>
         <script src="js/reveal.min.js"></script>
