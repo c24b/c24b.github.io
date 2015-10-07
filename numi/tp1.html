@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>MASTER NUMI: Fouille des données du web</title>
+
+        <meta name="author" content="Constance de Quatrebarbes">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        
+
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+        <script>
+            document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <!-- Fontawesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+
+        <style>
+
+            @font-face {
+                font-family: Symbola;
+                src: url(font/Symbola.ttf);
+            }
+
+            .reveal span.py {
+                font-weight: bolder;
+                //background-color: rgba(255, 255, 255, 0.1);
+                border-radius: 10px;
+            }
+
+            .reveal .py:before {
+                font-family: "Symbola";
+                background-color: #568ebd;
+                content: '🐍';
+                display: inline-block;
+                -webkit-transform: scaleX(-1);
+                transform: scaleX(-1);
+                font-weight: normal;
+                margin-right: 4px;
+                //background-color: rgba(255, 255, 255, 0.8);
+                padding: 4px;
+                color: black;
+                border-radius: 20px;
+            }
+            .reveal .py:after {
+                font-family: "Symbola";
+                background-color: #ffd54f;
+                content: '🐍';
+                font-weight: normal;
+                margin-left: 4px;
+                //background-color: rgba(255, 255, 255, 0.2);
+                color: black;
+                padding: 4px;
+                border-radius: 20px;
+                display: inline-block;
+            }
+            .reveal .cookie:before {
+                font-family: "Symbola";
+                content: '🍪 ';
+                font-weight: normal;
+                //background-color: rgba(255, 255, 255, 0.8);
+                padding: 4px;
+                margin-right: -6px;
+            }
+            .reveal .cookie:after {
+                font-family: "Symbola";
+                content: '🍪 ';
+                font-weight: normal;
+                //background-color: rgba(255, 255, 255, 0.8);
+                padding: 4px;
+            }
+
+            .reveal .slides section .fragment.result {
+                color: rgba(237, 237, 237, 0.2);
+                opacity: 0.2;
+                font-weight: normal;
+            }
+            .reveal .slides section .fragment.result.visible {
+                color: #0066FF;
+                opacity: 1;
+                font-weight: bolder;
+            }
+
+            .reveal .slides section .result {
+                display: block;
+                margin-bottom: 16px;
+                clear: both;
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+
+            .right {
+                float: right;
+            }
+
+            .reveal section img {
+                border: 0;
+                background: transparent;
+                box-shadow: None;
+            }
+
+            .reveal a.baseline:not(.image) {
+                vertical-align: text-bottom !important;
+            }
+
+            .reveal span.ref.link {
+                font-size: 60%;
+                padding-left: 0.1em;
+                vertical-align: super;
+            }
+            .reveal div.refs {
+                margin-top: 40px;
+                border-top: 1px solid rgba(255, 255, 255, 0.2);
+                text-align: left;
+                font-size: 70%;
+                padding-left: 16px;
+            }
+            .reveal span.ref.anchor {
+                font-size: 60%;
+                padding-left: 1em;
+                vertical-align: super;
+            }
+
+            .reveal h2 span.mini {
+                font-size: 70%;
+                padding-left: 8px;
+            }
+
+            .reveal ul {
+                margin-bottom: 15px;
+            }
+
+            .reveal pre code {
+                max-height: 540px;
+                font-size: 88%;
+            }
+
+            .reveal h2 img {
+                height: 160px;
+                vertical-align: middle;
+                padding-left: 20px;
+            }
+
+            .reveal div.source {
+                text-align: right;
+                width: 100%;
+                position: relative;
+                font-size: 14px;
+                margin-top: -14px;
+                right: 5%;
+            }
+
+            .reveal .symbol {
+                font-family: "Symbola";
+                font-size: 60px;
+             }
+
+            .reveal .schema {
+                font-size: 60%;
+                line-height: 1.4;
+                border-collapse: collapse;
+                table-layout: fixed;
+                width: 100%;
+            }
+
+            .reveal .schema td {
+                text-align: center;
+                vertical-align: middle;
+                padding: 20px 0;
+                margin: 20px 0;
+            }
+
+            .reveal .schema tr:nth-of-type(2) td:nth-of-type(even) {
+                font-size: 60px;
+                padding: 0 40px;
+            }
+
+            .reveal .schema tr:nth-of-type(2) td:nth-of-type(odd) {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+
+            .reveal .schema td pre {
+                font-size: 100%;
+                box-shadow: None;
+                white-space: nowrap;
+            }
+
+            .left {
+                float: left;
+            }
+
+            .top {
+                display: block;
+            }
+            
+            .reveal table.xpath {
+                border-collapse: collapse;
+                table-layout: fixed;
+                width: 100%;
+                font-size: 70%;
+                line-height: 1.1;
+            }
+            .reveal table.xpath tr:nth-of-type(1) td {
+                border-bottom: 1px solid white;
+            }
+
+            .reveal p {
+                text-align: left;
+            }
+
+            .reveal ul.links {
+                list-style-type: None;
+                margin-bottom: 80px;
+            }
+
+            .reveal .links .symbol {
+                display: inline-block;
+                width: 80px;
+            }
+
+            mark {
+                border-radius: 2px;
+                display: inline-block;
+                background-color: #f08a24;
+                color: #fff;
+            }
+            .index li {
+                list-style-type:none;
+            }
+            .index li:before {
+                content: "\261E  ";
+            }
+        </style>
+    </head>
+<body>
+        <div class="reveal">
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                
+                <section id="0">
+                    <div class="row">
+                    <div class="col-md-2">
+                        
+                    </div>
+                    <div class="col-md-8">
+                        <img src="img/spider.png" />
+                        <h3>Introduction</h3>
+                        <h3>à la fouille et l'analyse</h3>
+                        <h3>des données du WEB</h3>
+                        
+                        <small>MASTER NUMI (2015)</small>
+                        <br>
+                        <small>Elise Tancoigne et Constance de Quatrebarbes</small>
+                    </div>
+                    <div class="col-md-2">
+                        
+                    </div>
+                    
+                </section>
+                <section id="1">
+                    <div class="row">
+                    TEST
+<!--
+                        * Sous Chrome: 
+                        To open Chrome DevTools, use <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+
+                        <kbd>I</kbd> (or <kbd>Cmd</kbd>+<kbd>Opt</kbd>+<kbd>I</kbd> on Mac).
+                            - Presser la touche F12 0x000D
+                            - Presser: Ctrl+Maj+I 0x000D+0x21E7+
+                            - Dans le menu: outils > Outils de développement
+
+                        * Sous Firefox: 
+                            - Presser la touche F12
+                            - Presser: Ctrl+Maj+S
+                            - Dans la barre de menus : Outils > Développment web > Debogeur
+
+                        * Sous Safari:
+                            - Dans la barre de menus : Menu Développement > Afficher l'inspecteur web
+                            Si le menu Développement n’apparaît pas dans la barre des menus, choisissez Safari > Préférences, cliquez sur Avancées, puis cochez la case.
+
+                        * Sous Internet Explorer:
+                            L'inspecteur web étant difficile d'accès et bien moins pratique que les autres nous vous recommandons d'installer un autre navigateur
+                            parmi les navigateurs précédents
+-->
+                    </div>
+                </section>
+            </div>
+        </div>
+</body>
+<footer>
+(MASTER NUMI 2015 TD Constance de Quatrebarbes Elise Tancoigne)
+</footer>
