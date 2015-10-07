@@ -1,15 +1,14 @@
 <!doctype html>
 <html lang="en">
 
-<head>
+    <head>
         <meta charset="utf-8">
 
-        <title>MASTER NUMI: Fouille des données du web</title>
+        <title>PyWebMining</title>
 
         <meta name="author" content="Constance de Quatrebarbes">
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        
 
         <link rel="stylesheet" href="css/reveal.css">
         <link rel="stylesheet" href="css/theme/default.css" id="theme">
@@ -21,16 +20,7 @@
         <script>
             document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
         </script>
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
-        <!-- Optional theme -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-        <!-- Fontawesome -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <!--[if lt IE 9]>
         <script src="lib/js/html5shiv.js"></script>
         <![endif]-->
@@ -237,18 +227,6 @@
                 width: 80px;
             }
 
-            mark {
-                border-radius: 2px;
-                display: inline-block;
-                background-color: #f08a24;
-                color: #fff;
-            }
-            li.index {
-                list-style-type:none;
-            }
-            li.index:before {
-                content: "\261E  ";
-            }
         </style>
     </head>
 <body>
@@ -256,123 +234,89 @@
             <!-- Any section element inside of this container is displayed as a slide -->
             <div class="slides">
                 <section id="0">
-                    <div class="row">
-                    <div class="col-md-2">
-                        
-                    </div>
-                    <div class="col-md-8">
-                        <img src="img/spider.png" />
-                        <h3>Introduction</h3>
-                        <h3>à la fouille et l'analyse</h3>
-                        <h3>des données du WEB</h3>
-                        
-                        <small>MASTER NUMI (2015)</small>
-                        <br>
-                        <small>Elise Tancoigne et Constance de Quatrebarbes</small>
-                    </div>
-                    <div class="col-md-2">
-                        
-                    </div>
-                </section>
-                <section id="19">
-                <h3>Les différentes versions du web</h3>
-                <ul>
-                    <li>Web 1.0</li>
-                    <li>Web 2.0</li>
-                    <li>Web 3.0</li>
-                </ul>
-                </section>
-                <section id="15">
-                <h2>Les différentes "versions" du Web</h2>            
-                <ol>
-                    <li> Le web 1.0: <br>
-                    <small>
-                    un réseau de documents reliés entre eux par des hyperliens disponibles à une adresse
-                    </small>
-                    </li>
-                    <li>Le web 2.0: <br>
-                    <small>
-                    Une révolution des usages avec l’ajout d’une couche dynamique: un réseau de personnes
-                    <p>L’avènement des réseaux sociaux et la difficile définition de communauté</p>
-                    <p>Un web de personnes et le profil social</p>
-                    </small>
-                    </li>
-                    <li> Le web 3.0? <br>
-                    <small>
-                    Le web intelligent et les objets connectés: un réseau d’objets physiques
-                    </small>
-                    <small>
-                    Le web sémantique: un réseau de sens (données contextualisées et hiérarchisées)
+                    <h3>Introduction</h3>
+                    <h3>à la fouille et l'analyse</h3>
+                    <h3>des données du </h3>
+                    <h2>Web </h2>
                     
-                    Le web augmenté: intelligence artificielle et Big Data: (la place de l'algorithme et des processus de traitement des données)
-                    </small>
-                    </li>
-                </ol>
-            </section>
-                <section id="20">
-                <h3>Les données nativement numériques</h3>
-                <ul>Les données nativement numériques <br>
-                se caractérisent par leur <u>diversité</u>:
-
-                    <li>Protocoles:<br><small>HTTP, SMTP, POP, TelNet, UPNP, 3G, 4G+, etc. </small></li>
-                    <li>Sources:<br><small>capteurs, serveurs, téléphones, GPS, satellites, etc.</small></li>
-                    <li>Format:<br><small>HTML, XML, CSV, TXT, BDD, logs, etc.</small></li>
-                    <li>Structure:<br><small>tableaux, arbres, graphes</small></li>
-                    <li>Contenus:<br><small>mesures numériques, textes, relations, noeud et liens, clicks, code source de programme </small></li>
-                </ul>
+                    <span><img src="img/spider.png" /></span>
+                    <br />
+                    <span>MASTER NUMI (2015)
+                    <br />
+                    Elise Tancoigne et Constance de Quatrebarbes</span>
                 </section>
-                <section id="21">
-                <h3>Les données nativement numériques</h3>
-                <ul>Ces données impliquent aussi un type d'analyse particulier 
-                <br>et des méthodes empruntées à d'autres disciplines:
-
-                    <li>Analyse de contenus textuels:<br>
-                        <div class="col-md-6">
-                        Sociologie des discours et analyse de l'opinion
-                        </div>
-                        <div class="col-md-6">
-                        <small>Linguistique computationnelle</small>
-                        </div>
-                    </li>
-                    <li>Analyse des structures et des liens :<br>
-                    <div class="col-md-6">
-                    Sociologie des acteurs et des réseaux<br>
-                    </div>
-                    <div class="col-md-6">
-                    <small>Théorie des graphes</small></div></li>
-                    
-                    
-                    <li>Analyse des usages:<br><div class="col-md-6">Sociologie des usages</div><div class="col-md-6"><small>Statistiques</small></div></li>
-                    <li>Analyse des traitements et méthodes:<br><div class="col-md-6">Sociologie des techniques</div><div class="col-md-6"><small>Computer Sciences</small></div></li>
-                    
-                </ul>
-                </section>
-                <section id="22">
-                    <h2>Showcase: </h2>
-                    <h3>que faire avec toutes ses données?</h3>
-                    
-                </section>
-                <section>
-                    <h3>Des</h3>
-                    <p>présentez nous les projets suivants en spécifiant:</p>
+                <section id="1">
+                    <h2>Internet et le Web</h2>
                     <ul>
-                        <li>Auteur</li>
-                        <li>Source</li>
-                        <li>Objectif</li>
-                        <li>Le type de données</li>
-                    </ul>
-                    <ul> Des projets
-                    <li><a href="http://wearedata.watchdogs.com/start.php?locale=fr-FR&city=paris">Traces numériques</a></li>
-                    <li><a href="http://republicofletters.stanford.edu/publications.html">La république des lettres</a></li>
-                    <li><a href="http://www.dataviz.im/jesuischarlie/">#jesuischarlie</a></li>
-                    <li><a href=" http://www.lemonde.fr/election-presidentielle-2012/article/2012/02/02/la-gauche-domine-le-web-politique_1636754_1471069.html">présidence 2012</a></li>
-                    <li><a href="http://www.comeetie.fr/galerie/velib/">1 mois de velib</a></li>
-                    <li><a href="http://dataparis.io/">Paris et ses données</a></li>
-                    <li><a href="https://dwm.re/dataviz/projet/dataload/">Téléchargement illégal</a></li>
-                    
+                        <li><a href="#/2">Internet?</a></li>
+                        <li><a href="#/3">Site "Web"?</a></li>
+                            <ul>
+                                <li><a href="#/3/1">Ma première page HTML</a></li>
+                                <li><a href="#/3/2">Initiation au web scrapping</a></li>
+                                <ul>
+                                    <li><a href="#/3/5">Web scrapping</a></li>
+                                    <li><a href="#/3/6">Data mining </a></li>
+                                    <li><a href="#/3/7">Pour aller plus loin ...</a></li>
+                                </ul>
+                            </ul>
+                        <li><a href="#/4">Les "versions" du web</a></li>
+                        
+                        
                     </ul>
                 </section>
                 
+                <section id="2">
+                    <section>
+                        <h2>Comment marche Internet?</h2>
+                        <h3>⇩</h3>
+                    </section>
+                    
+                    <section>
+                        <section>
+                        De quoi a-t-on besoin pour se connecter à l’Internet?
+                        
+                        </section>
+                        <section>
+                            Shema d'un réseau domestique simple
+                        </section>
+                    </section>
+                    
+                    <section>
+                        <section>
+                        Un réseau décentralisé
+                        
+                        </section>
+                        <section>
+                            Des serveurs reliés entre eux par des cables qui partagent un protocole commun de communication
+                        </section>
+                        <section>
+                            Les protocoles de communication
+                        </section>
+                    </section>
+                </section>
+                <section id="3">
+                    <section>
+                        <h2>Comment marche un site web?</h2>
+                        <h3>⇩</h3>
+                    </section>
+                    <section>
+                    </section>
+                    <section>
+                    </section>
+                </section>
+                 <section id="4">
+                    <section>
+                        <h2>Les "versions" du web</h2>
+                        <h3>⇩</h3>
+                        <span>Et 1, et 2  et 3.0! </span>
+                    </section>
+                    <section>
+                    </section>
+                    <section>
+                    </section>
+                </section>
+                
+            </div>
         </div>
         <script src="lib/js/head.min.js"></script>
         <script src="js/reveal.min.js"></script>
