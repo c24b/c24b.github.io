@@ -400,6 +400,30 @@
                 </ul>
             </section>
             <!--terminal-->
+            <section id="console1">
+                <img scr="img/terminal.png">
+                <b>Qu'est ce qu'un <font color="#fa1"><a href="#terminal">Terminal</a></font>?</b>
+                <blockquote>
+                    Le "Terminal" ou "console" est une application 
+                    qui permet de comuniquer avec l'ordinateur à travers une ligne de commande 
+                    (mode texte) et de lui envoyer des instructions.
+                </blockquote>
+
+                <div class="row">
+                <div class="col col-md-6">
+                    Terminal MAC et Linux
+                <img src="img/terminal.png">
+                </div>
+                <div class="col col-md-6">
+                    Console Windows
+                <img src="img/dos.jpg">
+                </div>
+                </div>
+                
+                <li class="index">Si vous êtes sur windows et souhaitez manipuler facilement la ligne de commande vous pouvez installer <a href="http://babun.github.io/">Babun</a></li>
+
+                
+            </section>
             <section>
                 <h3>Ouvrir la console</h3>
                 <li class="index"><b>sous <font color="#fa1">Windows</font></b><br></li>
@@ -723,6 +747,7 @@ def write_file(filename, data):
                 <div class='source'><a class='source' href='rw_demo1.py'>Source</a></div>
                 <li class="index"><a class='source' href='https://openclassrooms.com/courses/apprenez-a-programmer-en-python/les-fichiers-2'> Documentation complete</a></li>
         </section>
+<!--
                 <section>
                     Lire et écrire un fichier (avancé)
                     <pre><code>
@@ -746,6 +771,7 @@ def write_csv_file(filename, data):
 <div class='source'><a class='source' href='rw_demo2.py'>Source</a></div>
                     <li class="index"><a class='source' href='http://bricolosciences.over-blog.fr/article-28536186.html'>Tutoriel</a></li>
                 </section>
+-->
 <section>
                     Lire et écrire un fichier CSV
                     <pre><code>
@@ -768,13 +794,22 @@ def write_csv_file(filename, data):
         return
         
 </code></pre>
+<div class='source'><a class='source' href='rw_demo2.py'>Source</a></div>
 <li class="index"><a class='source' href='http://www.chicoree.fr/w/Fichiers_CSV_en_Python'> Tutoriel</a></li>
 
                 </section>
                 <section>
+                        <h2><span class="symbol top">⇅</span>Crawler</h2>
+                        <blockquote>Pour crawler un site il existe des modules tout fait
+                        mais nous vous proposons ici de le coder par vous même
+                        en utilisant Python en vous inspirant du code qui suit
+                        </blockquote>
+                        
+            </section>
+                <section>
                     <h3>Crawl: Exemple</h3>
                 <pre><code>
-import re
+
 import requests
 import BeautifulSoup
 
@@ -797,6 +832,13 @@ def crawler(SeedUrl):
                 </code></pre>
                 <div class='source'><a class='source' href='crawl_demo2.py'>Source</a></div>
                 </section>
+                <section>
+                        <h2>Splinter </h2>
+                        <blockquote>Est un module python qui permet d'émuler un navigateur et d'interagr avec la page</blockquote>
+                        Nous allons l'installer via pip en tapant dans le <a href="">Terminal</a> ou Console:
+                        <pre><code>$ pip install splinter</code></pre>
+                        
+            </section>
                 <section>
                     <h3>Splinter: Exemple</h3>
 <pre><code>from splinter import Browser
@@ -832,15 +874,31 @@ print(resp)
         <section>
             <section>Exercices</section>
             <section>Exo1: <a href="http://rap.genius.com/">Rap Genius</a>
-            <blockquote> Comment récupérer la liste des textes de rap?
+            <blockquote> Comment feriez vous pour récupérer la liste de tous  textes de rap?
             </blockquote>
+            <li class="index">Avec ce qu'on vous a donné faites un prototype d'extracteur</li>
             </section>
             <section>Exo2: Consultation Loi Numérique:
-            Recupérer l'intégralité des arguments pour chaque proposition de loi du gouvernement sur <a href="https://www.republique-numerique.fr/projects/projet-de-loi-numerique/consultation/consultation">
+            <blockquote>Comment feriez vous pour récupérer l'intégralité des propositions de loi ainsi que les arguments pour et contre?</blockquote>
+            Le site <a href="https://www.republique-numerique.fr/projects/projet-de-loi-numerique/consultation/consultation">
             https://www.republique-numerique.fr/projects/projet-de-loi-numerique/consultation/consultation
             </a>
+            <li class="index">Avec ce qu'on vous a donné, faites un prototype d'extracteur</li>
             </section>
-            
+            <section>A rendre pour le prochain cours</section>
+            <section>
+                1. <a href="http://rap.genius.com/">Rap Genius</a>
+            <blockquote> Dans un fichier csv stocker le texte de rap, l'auteur et l'année
+            </blockquote>
+            </section>
+            <section>2
+            <a href="https://www.republique-numerique.fr/projects/projet-de-loi-numerique/consultation/consultation">
+            Projet de loi sur le numérique
+            </a>
+            <blockquote> Dans un fichier csv stocker le texte de l'argument, s'il est pour ou contre, la référence au projet de loi, l'auteur
+            </blockquote>
+            </a>
+            </section>
         </section>
         </div>    
         <script src="lib/js/head.min.js"></script>
