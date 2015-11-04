@@ -1,0 +1,901 @@
+<!doctype html>
+<html lang="fr">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Web mining : cours n°3</title>
+
+        <meta name="author" content="Constance de Quatrebarbes">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+        <script>
+            document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src="js/shCore.js"></script> 
+        
+        <!-- Fontawesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+
+        <style>
+
+            @font-face {
+                font-family: Symbola;
+                src: url(font/Symbola.ttf);
+            }
+
+            .reveal span.py {
+                font-weight: bolder;
+                //background-color: rgba(255, 255, 255, 0.1);
+                border-radius: 10px;
+            }
+
+            .reveal .py:before {
+                font-family: "Symbola";
+                background-color: #568ebd;
+                content: '🐍';
+                display: inline-block;
+                -webkit-transform: scaleX(-1);
+                transform: scaleX(-1);
+                font-weight: normal;
+                margin-right: 4px;
+                //background-color: rgba(255, 255, 255, 0.8);
+                padding: 4px;
+                color: black;
+                border-radius: 20px;
+            }
+            .reveal .py:after {
+                font-family: "Symbola";
+                background-color: #ffd54f;
+                content: '🐍';
+                font-weight: normal;
+                margin-left: 4px;
+                //background-color: rgba(255, 255, 255, 0.2);
+                color: black;
+                padding: 4px;
+                border-radius: 20px;
+                display: inline-block;
+            }
+            .reveal .cookie:before {
+                font-family: "Symbola";
+                content: '🍪 ';
+                font-weight: normal;
+                //background-color: rgba(255, 255, 255, 0.8);
+                padding: 4px;
+                margin-right: -6px;
+            }
+            .reveal .cookie:after {
+                font-family: "Symbola";
+                content: '🍪 ';
+                font-weight: normal;
+                //background-color: rgba(255, 255, 255, 0.8);
+                padding: 4px;
+            }
+
+            .reveal .slides section .fragment.result {
+                color: rgba(237, 237, 237, 0.2);
+                opacity: 0.2;
+                font-weight: normal;
+            }
+            .reveal .slides section .fragment.result.visible {
+                color: #0066FF;
+                opacity: 1;
+                font-weight: bolder;
+            }
+
+            .reveal .slides section .result {
+                display: block;
+                margin-bottom: 16px;
+                clear: both;
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+
+            .right {
+                float: right;
+            }
+
+            .reveal section img {
+                border: 0;
+                background: transparent;
+                box-shadow: None;
+            }
+
+            .reveal a.baseline:not(.image) {
+                vertical-align: text-bottom !important;
+            }
+
+            .reveal span.ref.link {
+                font-size: 60%;
+                padding-left: 0.1em;
+                vertical-align: super;
+            }
+            .reveal div.refs {
+                margin-top: 40px;
+                border-top: 1px solid rgba(255, 255, 255, 0.2);
+                text-align: left;
+                font-size: 70%;
+                padding-left: 16px;
+            }
+            .reveal span.ref.anchor {
+                font-size: 60%;
+                padding-left: 1em;
+                vertical-align: super;
+            }
+
+            .reveal h2 span.mini {
+                font-size: 70%;
+                padding-left: 8px;
+            }
+
+            .reveal ul {
+                margin-bottom: 15px;
+            }
+
+            .revela pre{
+<!--
+                overflow: auto;
+-->
+                white-space: pre-wrap;
+            }
+            .reveal pre code {
+                max-height: 90%;
+                max-width: 90%;
+                font-size: 88%;
+                background-color: #000,
+                font-color:red;
+                text-align: left;
+            }
+
+
+            .reveal h2 img {
+                height: 160px;
+                vertical-align: middle;
+                padding-left: 20px;
+            }
+
+            .reveal div.source {
+                text-align: right;
+                width: 100%;
+                position: relative;
+                font-size: 14px;
+                margin-top: -14px;
+                right: 5%;
+            }
+
+            .reveal .symbol {
+                font-family: "Symbola";
+                font-size: 60px;
+             }
+
+            .reveal .schema {
+                font-size: 60%;
+                line-height: 1.4;
+                border-collapse: collapse;
+                table-layout: fixed;
+                width: 100%;
+            }
+
+            .reveal .schema td {
+                text-align: center;
+                vertical-align: middle;
+                padding: 20px 0;
+                margin: 20px 0;
+            }
+
+            .reveal .schema tr:nth-of-type(2) td:nth-of-type(even) {
+                font-size: 60px;
+                padding: 0 40px;
+            }
+
+            .reveal .schema tr:nth-of-type(2) td:nth-of-type(odd) {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+
+            .reveal .schema td pre {
+                font-size: 100%;
+                box-shadow: None;
+                white-space: nowrap;
+                
+            }
+            
+            .left {
+                float: left;
+            }
+
+            .top {
+                display: block;
+            }
+            
+            .reveal table.xpath {
+                border-collapse: collapse;
+                table-layout: fixed;
+                width: 100%;
+                font-size: 70%;
+                line-height: 1.1;
+            }
+            .reveal table.xpath tr:nth-of-type(1) td {
+                border-bottom: 1px solid white;
+            }
+
+            .reveal p {
+                text-align: left;
+            }
+
+            .reveal ul.links {
+                list-style-type: None;
+                margin-bottom: 80px;
+            }
+
+            .reveal .links .symbol {
+                display: inline-block;
+                width: 80px;
+            }
+            mark {
+                border-radius: 2px;
+                display: inline-block;
+                background-color: #f08a24;
+                color: #fff;
+            }
+            li.index {
+                list-style-type:none;
+            }
+            li.index:before {
+                content: "\261E  ";
+            }
+
+        </style>
+    </head>
+    <body>
+    <div class="reveal">
+            <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+        <section id="index">
+            
+            <h2 class="py">Web Mining avec Python</h1>
+            <ol>
+            <li><b><a href="#/1">Techniques</a></b></li>
+                <li><b><a href="#/2">Installation</a></b></li>
+                <li><b><a href="#/3">Démos</a> </h3></b></li>
+                <li><b><a href="#/4">Exercices </a></b></li>
+                </ol>
+        </section>
+        <!--SOMMAIRE-->
+        
+        <!--Rappel des techniques-->
+        
+        <section id="techniques">
+            <section>
+                <h2><b>Rappel des <font color="#fa0">techniques</font></b></h2>
+            </section>
+            <section>
+                <h3>Data Mining et Web Mining</h3>
+                <p class="center">Le <a class='baseline' href="http://en.wikipedia.org/wiki/Web_mining">Web Mining</a>
+                        est une application du <a href="http://en.wikipedia.org/wiki/Datamining"> Data Mining</a>
+                        
+                </p>
+                <p class="center">C'est aussi une manière <s>erronée</s> <u>simplifiée</u> de désigner
+                toutes les <mark>techniques</mark> pour :
+                </p>
+                <blockquote class="center"> 
+                <ul>
+                <li>collecter des données</li>
+                <li>constituer des datasets</li> 
+                <li>explorer et visualiser </li>
+                <li>analyser</li>
+                </ul>
+                </blockquote>
+            </section>
+            
+            <section>
+                <span class='symbol top'><img src="img/scrapy.png"></span><h3>Scrapping</h3>
+                
+                <table class='schema'>
+                            <tr>
+                                
+                                <td><span class='symbol top'>&#9729;</span>Internet</td>
+                                <td></td>
+                                <td><span class='symbol top'>⇅</span>download</td>
+                                <td></td>
+                                <td><span class='symbol left'>🔤</span>string</td>
+                                <td></td>
+                                <td><span class='symbol left'>🌲 </span>document (DOM)</td>
+                                <td></td>
+                                <td><span class='symbol top'>☰</span>dataset</td>
+                            </tr>
+                            <tr>
+                                
+                                <td> <span class='symbol'>&#x1f4c4; </span><br>url</td>
+                                <td>⇢</td>
+                                <td class='symbol top'>⇅</td>
+                                <td>⇢</td>
+                                <td><pre>&lt;html&gt;</pre></td>
+                                <td>⇢</td>
+                                <td><pre>&lt;html&gt;<br>&nbsp;&nbsp;&lt;body&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;</pre></td>
+                                <td>⇢</td>
+                                <td><img src="img/db.png" ><br>JSON CSV, TXT, DB</td>
+                                
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><mark>Requêter</mark></td>
+                                <td></td>
+                                <td><mark>Transformer</mark></td>
+                                <td></td>
+                                <td><mark>Parcourir</mark></td>
+                                <td></td>
+                                <td><mark>Extraire</mark></td>
+                                <td></td>
+                            </tr>
+                 </table>
+                
+            </section>
+            <section>
+                <span class='symbol top'><img src="img/spider.png"></span><h3>Crawling</h3>
+                <pre class="brush: python"> Pour chaque url:
+                ----->      - requeter  l'url (http)
+                |           - télécharger la page (texte)
+                |           - parcourir le html (dom)
+                |           - extraire les données intéressantes(scrapping)
+                |           - extraire les liens (a href)    ------------
+                |                                                       |
+                |                                                       |
+                ---------------------------------------------------------
+                </pre>
+                <p>On obtient des datasets sous formes de tables ou de graphes
+                en fonction de ce qu'on veut regarder:
+                <ul>
+                <li>les données brutes (tous les titres, toutes les descriptions...) </li>
+                <li>la relation entre les pages </li>
+                </ul>
+                </p>
+            </section>
+        
+            <section>
+                <span class='symbol top'><img src="img/js.png" width="10%">
+                </span><h3>Web Scrapping Avancé</h3>
+                
+                <p>Le <mark>Javascript</mark> permet d'afficher des données de manière dynamique en fonction des interactions avec la page</p>
+                <code>&lt;script&gt;...&lt;\script&gt;</code>
+                
+                </p>
+                <p>La présence de script est marqué dans le HTML mais n'affiche pas les données sans navigateur
+                </p>
+                <ul>Par exemple pour:
+                    <li>Remplir un formulaire</li>
+                    <li>Accéder à des données produites par des tiers </li>
+                    <li>Interagir avec des fenêtres ou pop up</li>
+                
+                </ul>
+            </section>
+        </section>
+        <section id="install">
+        
+            <section>
+                    
+                <h2><span class='symbol'>⚒</span><b><font color="#fa0">installations</font> des outils</b><span class='symbol'>⚒</span></h2>
+                <ul>
+                    <li><b>Découverte du  <font color="#fa1">Terminal</font> </b></li>
+                    <li><b>Installer <font color="#fa1">Python</font> </b></li>
+                <li><b>Installer <font color="#fa1">les modules complémentaires</font> </b></li>
+                <li><b>Installer <font color="#fa1">un éditeur de code</font> </b></li>
+                </ul>
+            </section>
+            <!--terminal-->
+            <section>
+                <h3>Ouvrir la console</h3>
+                <li class="index"><b>sous <font color="#fa1">Windows</font></b><br></li>
+                
+                <p>
+                Cliquer sur le menu Démarrer de Windows.
+                Dans le champ “Recherche” ou “Rechercher les programmes et fichier”, taper cmd, sans appuyer sur la touche Entrée.<br>
+                <a class="small" href="http://wikistrea.fr/Comment_ouvrir_la_console_de_commande_Windows_en_mode_administrateur_%3F">Pour plus d'info</a>
+                </p>
+                <li class="index"><b>sous <font color="#fa1">Mac</font></b><br></li>
+                
+                <p>
+                Dossier Applications >>> Utilitaires >>> Terminal <br>
+                <a class="small" href="http://www.tal.univ-paris3.fr/plurital/travaux-2008-2009/L7T04-2008-2009/laviedesbouchonssurleweb/TerminalMac.html">Pour plus d'info</a>
+                </p>
+                <li class="index"><b>sous <font color="#fa1">Linux</font></b><br></li>
+                
+                <p>
+                
+                
+                Ctrl+ Alt + T<br>
+                <a class="small" href="http://doc.ubuntu-fr.org/tutoriel/console_commandes_de_base">Pour plus d'info</a>
+                </p>
+            </section>
+            <section>
+                <ul>Quelques commandes utiles:</ul>
+                
+                <table class="shema table-bordered">
+                    <tr class="header">
+                        <td>Instructions</td>
+                        <td><a href="https://fr.wikipedia.org/wiki/Commandes_MS-DOS">Commande Windows</a></td>
+                        <td><a href="http://buzut.fr/2012/09/10/101-commandes-indispensables-sous-linux/">Commande Mac et OSX</a></td>
+                    </tr>
+                    <tr>
+                        <td>lister les documents du dossier</td>
+                        <td>LS</td>
+                        <td>ls</td>
+                    </tr>
+                    <tr>
+                        <td>savoir ou je suis </td>
+                        <td>DIR</td>
+                        <td>pwd</td>
+                    </tr>
+                    <tr>
+                        <td>me deplacer dans un dossier</td>
+                        <td>CD nom_du_dossier</td>
+                        <td>cd nom_du dossier</td>
+                    </tr>
+                    <tr>
+                        <td>Revenir en arrière</td>
+                        <td>CD ..</td>
+                        <td>cd ..</td>
+                    </tr>
+                    
+                </table>
+            
+            </section>
+            <section>
+                <b>Installer <font color="#fa1">Python</font> 2.7 </b>
+                <p>
+                <ul>
+                <li><small>Instructions pour <a href="#/2/4">Windows</a></small></li>
+                <li><small>Instructions pour <a href="#/2/5">Mac</a></small></li>
+                <li><small>Instructions pour <a href="#/2/6">Linux</a></small></li>
+                </ul>
+                </p>
+            </section>
+            <section>
+                <h3><font color="#fa1">Python</font> sur Windows</h3>
+                <ol>
+                    
+                    <li> Télécharger la version correspondante sur <a href="https://www.python.org/downloads/">python.org </a></li>
+                    <li> Executer le fichier d'installation qui porte l'extension <small class="bottom"><code>.msi</code></small></li>
+                <li>Suivez les instructions</li>
+                </ol>
+                <br>
+                <blockquote>Retenez bien le chemin d'installation (le dossier) dans lequel vous avez installé Python.</blockquote>
+                <br>
+                <li class="index">Si votre installation a fonctionné vous devriez trouver dans votre menu un onglet Python IDLE</li>
+                
+                
+                
+            </section>
+            <section>
+                    <h3><font color="#fa1">Python</font> sur MAC</h3>
+                    
+                    <p>Vérifiez que python n'est pas déjà installé en ouvrant le <a href="#terminal"> terminal </a> </p>
+                    <pre><code class="snippet exec python" data-trim="" contenteditable="yes" data-noescape="">
+                        $ python --version
+                        Python 3.4.4
+                    </code></pre>
+                    <ol>
+                    
+                    Si la commande <code class="snippet">python</code> n'est pas disponible, ou si une version inférieure est détectée :
+                    <li> Télécharger la version correspondante sur <a href="https://www.python.org/downloads/">python.org </a>
+                
+                    </li>
+                    <li> Executer le fichier d'installation qui porte l'extension <code>.msi</code></li>
+                    <li>Suivez les instructions</li>
+                    </ol>
+                    <li class="index">Si votre installation a fonctionné vous trouver par la recherche un programme Python IDLE</li>
+            </section>
+            <section>
+            <h3><font color="#fa1">Python</font> sur LINUX</h3>
+            Vérifiez que python n'est pas déjà installé:
+                    ouvrez le <a href="">terminal</a> et tapez:
+                    
+                    <pre><code>$ python --version
+Python 2.7
+                    </code></pre>
+                    Si la commande <code>python</code> n'est pas disponible, ou si une version inférieure est détectée :
+                        <pre><code class="snippet exec python">
+                            $sudo apt-get install python2.7
+                        </code>
+                        </pre>
+                <li class="index">Si votre installation a fonctionné vous pouvez tapez dans la console python et accéder à l'interpréteur</li>
+            </section>
+            <section >
+                <b>Installer <font color="#fa1">un éditeur de texte</font> </b><br><br>
+                <ul>Au choix:
+                <li>Votre éditeur préféré</li>
+                <li>Si vous n'en avez pas: <a href="http://www.sublimetext.com/2">SublimeText2</a>
+                </li>
+                </ul>
+            </section>
+            
+            <section >
+                <b>Installer <font color="#fa1">les modules complémentaires</font> </b><br><br>
+                Pour installer les modules complémentaire, Python embarque 
+                un outil qui permet de les télécharger simplement <mark>pip</mark>
+                
+                Vérifier que pip est installé:
+                <pre class="code small"><code class="snippet exec python">$ pip --version</code></pre>
+            Si pip n'est pas installé reportez vous <a href="http://pip.readthedocs.org/en/stable/installing/">ici</a>
+            </section>
+        </section>
+        <section id="demo">
+            <section>
+            <h2><b><font color="#fa0">Démonstration</font> et code sample</b></h2>
+            <ul>
+                <li><font color="#fa0">Scrapping</font> d'une page web</li>
+                <li><font color="#fa0">Crawling</font> d'un site web</li>
+                <li><font color="#fa0">Web Scrapping avancé</font> avec login</li>
+            </ul>
+            </section>
+            <section>
+
+                        <h2><span class='symbol'>⚒</span><font color="#fa0">Scrapping</font> d'une page web<span class='symbol'>⚒</span></h2>
+                        <table class='schema'>
+                            
+                            <tr>
+                                
+                                <td><span class='symbol top'>&#9729;</span>Internet</td>
+                                <td></td>
+                                <td><span class='symbol top'>⇅</span>download</td>
+                                <td></td>
+                                <td><span class='symbol left'>🔤</span>string</td>
+                                <td></td>
+                                <td><span class='symbol left'>🌲 </span>document (DOM)</td>
+                                <td></td>
+                                <td><span class='symbol top'>☰</span>dataset</td>
+                            </tr>
+                            <tr>
+                                
+                                <td> <span class='symbol'>&#x1f4c4; </span><br>url</td>
+                                <td>⇢</td>
+                                <td class='symbol top'>⇅</td>
+                                <td>⇢</td>
+                                <td><pre>&lt;html&gt;</pre></td>
+                                <td>⇢</td>
+                                <td><pre>&lt;html&gt;<br>&nbsp;&nbsp;&lt;body&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;</pre></td>
+                                <td>⇢</td>
+                                <td><img src="img/db.png" ><br>JSON CSV, TXT, DB</td>
+                                
+                            </tr>
+                            
+                            <tr>
+                                <td></td>
+                                <td>Requests</td>
+                                <td></td>
+                                <td>BeautifulSoup</td>
+                                <td></td>
+                                <td>DOM Inspector + Splinter</td>
+                                <td></td>
+                                <td>Writer</td>
+                                <td></td>
+                            </tr>
+                 </table>
+            </section>
+            <section>
+                        <h2><span class="symbol top">⇅</span>Requests <img src="img/requests.png"></h2>
+                        <blockquote>Est un module python qui permet de télécharger une page web</blockquote>
+                        Nous allons l'installer via pip en tapant dans le <a href="">Terminal</a> ou Console:
+                        <pre><code>$ pip install requests</code></pre>
+                        
+            </section>
+                    
+            <section>
+                <h3>Request: example</h3>
+                <pre><code>
+                    #on importe le module
+                    import requests
+                    #on définit une fonction qui va nous reservir
+                    def download(url):
+                        #on charge la page
+                        response = request.get(url)
+                        #on vérifie le status de la page
+                        if response.status_code == 200:
+                            #si 200 = OK
+                            #on renvoie la réponse qui est du texte
+                            return response.text
+
+                    
+                    mypage = "http://fr.wikipedia.org/wiki/Araignée"
+                    ###ici on appelle notre fonction
+                    html = download(mypage)
+                    print(html)
+                    </code></pre>
+                    <div class='source'><a class='source' href='request_demo.py'>Source</a></div>
+                <ul><a class='source' href='http://docs.python-requests.org/en/latest/'> Documentation complete</a></ul>
+                </section>
+                <section>
+                <h2><span class="symbol left">🔤</span>Beautiful Soup <img src="img/bs.jpg"></h2>    
+                <blockquote>Est un module python qui permet de parser du HTML</blockquote>
+                Nous allons l'installer via le <a href="">Terminal</a> ou la Console
+                <pre><code>$ pip install BeautifulSoup4</code></pre>
+    </section>
+                    
+    <section>
+                <h3>BeautifulSoup: Exemple</h3>
+                    <pre><code>
+                import BeautifulSoup4
+
+                def extract_title(html):
+                    soup = BeautifulSoup4(html)
+                    return soup.title
+
+                ###ici l'exemple avec inclusion de la fonction précédente
+                mypage = "http://fr.wikipedia.org/wiki/Araignée"
+                html = download(mypage)
+                title = extract_title(html)
+                print(title)</code></pre>
+                <div class='source'><a class='source' href='request_demo.py'>Source</a></div>
+                <li class="index"><a class='source' href='http://www.crummy.com/software/BeautifulSoup/bs4/doc/'> Documentation complete</a></li>
+                </section>
+    <section>
+                
+                        <h2>BeautifulSoup :détails de méthode</h2>
+                        <table class='xpath'>
+                            <tr>
+                                <td>Selector</td>
+                                <td>Description</td>
+                                
+                                <td>BeautifulSoup </td>
+                                
+                            </tr>
+                            <tr>
+                                <td>html</td>
+                                <td>Nodes du type &lt;html&gt;</td>
+                                
+                                <td><pre>soup.find('html')</pre></td>
+                                
+                            </tr>
+                            <tr>
+                                <td>html > body</td>
+                                <td>Les noeuds enfant du type &lt;html&gt; dont le type est &lt;body&gt;</td>
+                                
+                                <td><pre>soup.find('body')</pre></td>
+                                
+                            </tr>
+                            <tr>
+                                <td>html li:nth-of-type(2)</td>
+                                <td>le deuxième enfant du type &lt;li&gt; node of type &lt;html&gt;</td>
+                                <td><pre>soup.find_all('li')[1]</pre></td>
+                            </tr>
+                            <tr>
+                                <td>html li.c1</td>
+                                <td>les enfant du type &lt;html&gt; dont l'attribur «class» a pour valeur «c1»</td>
+                                
+                                <td><pre>soup.find_all('li', {"class": "c1"})</pre></td>
+                                
+                            </tr>
+                            <tr>
+                                <td>li#c1</td>
+                                <td>noeud du type &lt;li&gt; dont l'attribut «id» a pour valeur «c1»</td>
+                                
+                                <td><pre>soup.find_all('li', {"id": "c1"})</pre></td>
+                            </tr>
+                            
+                        </table>
+                        
+                    
+                    
+                    <li class="index"><a class='source' href='http://www.crummy.com/software/BeautifulSoup/bs4/doc/'> Documentation complete</a></li>
+                </section>
+                <section>
+                <h2><span class="symbol left">🔤</span>Créer un fichier <img src="img/bs.jpg"></h2>    
+                <blockquote>Une fois les éléments stockés dans une variable il faut les écrire dans un fichier
+                pour cela nous allons voir comment lire et écrire un fichier en python
+                </blockquote>
+                </section>
+                <section>
+                    Lire et écrire un fichier en Python (version simple)
+                    
+                    <pre><code>
+
+def read_file(filename):
+    #lire un fichier
+    with open(filename, 'r') as f:
+        return filename.read()
+
+def write_file(filename, data):
+    #ecrire dans  un fichier
+    with open(filename, 'w') as f:
+        return f.write()
+    return 
+
+
+
+</code></pre>
+                <div class='source'><a class='source' href='rw_demo1.py'>Source</a></div>
+                <li class="index"><a class='source' href='https://openclassrooms.com/courses/apprenez-a-programmer-en-python/les-fichiers-2'> Documentation complete</a></li>
+        </section>
+                <section>
+                    Lire et écrire un fichier (avancé)
+                    <pre><code>
+                    
+                    
+def read_csv_file(filename):
+    #lire une à une les lignes d'un fichier
+    with open(filename, 'w') as f:
+        for line in f:
+            f.readline(line)
+    return
+    
+def write_csv_file(filename, data):
+    #ecrire une liste de données dans un fichier avec pour séparateur ";"
+    with open(filename, 'w') as f:
+        for line in data
+            line = line.join(";")
+            f.writeline(line)
+    return
+</code></pre>
+<div class='source'><a class='source' href='rw_demo2.py'>Source</a></div>
+                    <li class="index"><a class='source' href='http://bricolosciences.over-blog.fr/article-28536186.html'>Tutoriel</a></li>
+                </section>
+<section>
+                    Lire et écrire un fichier CSV
+                    <pre><code>
+    import csv
+    
+    def read_csv(file='eggs.csv'):
+        with open(file, 'rb') as csvfile:
+        spamreader = csv.reader(csvfile, delimiter=';')
+        for row in spamreader:
+            print ', '.join(row)
+        return
+                    
+    
+        
+    def write_csv(filename="eggs.csv, data= ['Spam', 'Lovely Spam', 'Wonderful Spam']):
+        #ecrire une liste de données dans un fichier avec pour séparateur ";"
+        with open('eggs.csv', 'wb') as csvfile:
+        spamwriter = csv.writer(csvfile, delimiter=';')
+        spamwriter.writerow(data)
+        return
+        
+</code></pre>
+<li class="index"><a class='source' href='http://www.chicoree.fr/w/Fichiers_CSV_en_Python'> Tutoriel</a></li>
+
+                </section>
+                <section>
+                    <h3>Crawl: Exemple</h3>
+                <pre><code>
+import re
+import requests
+import BeautifulSoup
+
+def crawler(SeedUrl):
+    tocrawl=[SeedUrl]
+    crawled=[]
+    while tocrawl:
+        page=tocrawl.pop()
+        print 'Crawled:'+page
+        pagesource=requests.get(page)
+        if pagesource.status_code == 200:
+            s= pagesource.text
+            soup=BeautifulSoup.BeautifulSoup(s)
+            links=soup.findAll('a',href=True)        
+            if page not in crawled:
+                for l in links:
+                    tocrawl.append(l['href'])
+                crawled.append(page)   
+        return crawled
+                </code></pre>
+                <div class='source'><a class='source' href='crawl_demo2.py'>Source</a></div>
+                </section>
+                <section>
+                    <h3>Splinter: Exemple</h3>
+<pre><code>from splinter import Browser
+
+from splinter import Browser
+
+def fill_form(query='cute panda'):
+    
+    b = Browser()
+    # Visit URL
+    url = "http://websta.me/search"
+    browser.visit(url)
+    browser.fill('q', query)
+    # Find and click the 'search' button
+    button = browser.find_by_tag('button')
+    # Interact with elements
+    button.first.click()
+    if browser.is_text_present(query):
+        return browser.html
+    else:
+        return False
+
+resp = fill_form()
+print(resp)
+</code></pre>
+<div class='source'><a class='source' href='splinter_demo.py'>Source</a></div>
+<li class="index"><a class='source' href='https://splinter.readthedocs.org/en/latest/install.html'>Documentation</a></li>
+
+        
+        </section>
+        
+        </section>
+        <section>
+            <section>Exercices</section>
+            <section>Exo1: <a href="http://rap.genius.com/">Rap Genius</a>
+            <blockquote> Comment récupérer la liste des textes de rap?
+            </blockquote>
+            </section>
+            <section>Exo2: Consultation Loi Numérique:
+            Recupérer l'intégralité des arguments pour chaque proposition de loi du gouvernement sur <a href="https://www.republique-numerique.fr/projects/projet-de-loi-numerique/consultation/consultation">
+            https://www.republique-numerique.fr/projects/projet-de-loi-numerique/consultation/consultation
+            </a>
+            </section>
+            
+        </section>
+        </div>    
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.min.js"></script>
+        <script src="lib/js/jquery-2.0.1.min.js"></script>
+
+        <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                     { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+                    // { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+                    // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+
+            $(function() {
+                $("pre code.exec").on("keydown", function(e) {
+                    // Ctrl-Enter pressed
+                    if (e.ctrlKey && e.keyCode == 13) {
+                        var code = $(this).children(".result").remove();
+                        code = $(this).text();
+                        console.log(code);
+                        var self = this;
+                        $.ajax("/eval", {
+                            data: JSON.stringify({"code": code}),
+                            method: "POST",
+                            success: function(data) {
+                                console.log(data.eval);
+                                $(self).html(data.eval);
+                                $(self).blur();
+                            },
+                            contentType: "application/json"
+                        });
+                    }
+                });
+            });
+
+        </script>
+        </div>
+    </body>
+</html>
