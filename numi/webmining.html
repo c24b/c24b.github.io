@@ -559,6 +559,67 @@ Python 2.7
                 <pre class="code small"><code class="snippet exec python">$ pip --version</code></pre>
             Si pip n'est pas installé reportez vous <a href="http://pip.readthedocs.org/en/stable/installing/">ici</a>
             </section>
+            <section> Récapitulatif de votre environnement de travail
+            <b>Sous Mac et Linux:</b>
+                <div class="row">
+                    <div class="col col-md-6">
+                
+                <small><ul>
+                    <li>Créer un dossier spécifique pour ce cours</li>
+                    
+                    exemple: créer un dossier Fouille sur le Bureau
+                    <br>
+                    <code>Users/nom_de_l_utilisateur/Desktop/Fouille</code>
+                    <li>Ouvrez votre éditeur de code: modifiez les fichiers dedans <br>et enregistrez les dans ce dossier</li>
+                    <li>Pour tester votre code: ouvrez le terminal</li> 
+                    <li>déplacer vous dans le dossier correspondant</li> 
+                    <code> cd Users/nom_de_l_utilisateur/Desktop/Fouille </code>
+                    
+                    <li>et executez les fichiers en tapant </li>
+                    <code> python monfichiertest.py </code>
+                    <li>le résultat du code va s'exécuter et afficher les résultats dans la console</li>
+                </ul>
+                </small>
+                </div>
+                <div class="col col-md-6">
+                
+                    
+                <blockquote><small >
+                    <br>
+                Gardez toujours votre terminal ouvert pour tester votre fichier <br>
+                Modifier vos fichiers dans l'éditeur et sauvegardez<br>
+                Si un module manque dans le terminal tapez <br>
+                <code>pip install <nom_du_module></code> <br>pour l'installer
+                </small>
+                </blockquote>
+            </div>
+            </div>
+            </section>
+            <section>
+                <b>Récapitulatif de votre environnement de travail sous Windows:</b>
+                <div class="row">
+                    <div class="col col-md-8">
+                <ul>
+                    <li>Créer un dossier pour ce cours</li>
+                    
+                    <code> MKDIR C:/Python27/Script/Fouile </code>
+                    <li>Ouvrez votre éditeur de code: modifiez les fichiers dedans et enregistrez les toujours dans ce dossier</li>
+                    <li>Pour tester votre code: dans Sublime Text tapez Ctrl+B</li> 
+                    <li>le résultat du code va s'exécuter et afficher les résultats en dessous du fichier</li>
+                </ul>
+                </div>
+            <div class="col col-md-4">
+            <blockquote ><small>
+                Enregistrez toujours vos fichiers dans ce dossier<br>
+                Modifier vos fichiers dans l'éditeur et sauvegardez<br>
+                Si un module manque ouvrez le terminal deplacez vous dans ce dossier <br>
+                <code>CD C:/Python27/Scripts/Fouille</code>
+                <code>pip install <nom_du_module></code> pour l'installer
+            </small>
+            </blockquote>
+            </div></div>
+            </section>
+            
         </section>
         <section id="demo">
             <section>
@@ -629,7 +690,7 @@ Python 2.7
                     #on définit une fonction qui va nous reservir
                     def download(url):
                         #on charge la page
-                        response = request.get(url)
+                        response = requests.get(url)
                         #on vérifie le status de la page
                         if response.status_code == 200:
                             #si 200 = OK
@@ -655,14 +716,14 @@ Python 2.7
     <section>
                 <h3>BeautifulSoup: Exemple</h3>
                     <pre><code>
-                import BeautifulSoup4
+                from bs4 import BeautifulSoup
 
                 def extract_title(html):
-                    soup = BeautifulSoup4(html)
+                    soup = BeautifulSoup(html)
                     return soup.title
 
                 ###ici l'exemple avec inclusion de la fonction précédente
-                mypage = "http://fr.wikipedia.org/wiki/Araignée"
+                mypage = "http://en.wikipedia.org/wiki/Spider"
                 html = download(mypage)
                 title = extract_title(html)
                 print(title)</code></pre>
