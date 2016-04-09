@@ -1,0 +1,11 @@
+site_name: Crawtext documentation
+pages:
+- Home: index.md
+- Summary: README.md
+- Introduction: introduction.md
+- Installation: installation.md
+- Configuration: configuration.md
+- Tutorial: tutorial.md
+- Developper guide: developper_guide.md
+- Next steps developpement: todo.md
+theme: readthedocs
