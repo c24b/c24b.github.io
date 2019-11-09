@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>c24b</title><link href="https://c24b.fr/" rel="alternate"></link><link href="https://c24b.fr/feeds/all.atom.xml" rel="self"></link><id>https://c24b.fr/</id><updated>2019-11-09T19:30:00+01:00</updated><entry><title>Agile au féminin</title><link href="https://c24b.fr/agile-au-feminin.html" rel="alternate"></link><published>2019-11-09T10:20:00+01:00</published><updated>2019-11-09T19:30:00+01:00</updated><author><name>Constance de Quatrebarbes</name></author><id>tag:c24b.fr,2019-11-09:/agile-au-feminin.html</id><summary type="html">&lt;p&gt;Conjuger l'agile au féminin. Quelques pistes &lt;strong&gt;concretes&lt;/strong&gt; d'amélioration du management d'équipe.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Quelques pistes d'amélioration de la méthodologie agile pour mieux manager les femmes développeuses et prendre en compte la diversité de profils des équipes&lt;/p&gt;
+&lt;h4&gt;Gestion d'équipe&lt;/h4&gt;
+&lt;h5&gt;Inégalités des contributions féminines au code source d'un projet**&lt;/h5&gt;
+&lt;p&gt;Sources:
+* &lt;a href="https://www.bbc.com/news/technology-35559439"&gt;BCC&lt;/a&gt;
+* &lt;a href="https://peerj.com/preprints/1733/"&gt;L'article en question&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Un Protocole de contribution / amélioration au travail d'équipe clair et détaillé et anonymisé/dégenré(?)&lt;/p&gt;
+&lt;h5&gt;Inégalités de la prise de parole des femmes dans les équipes de dev**&lt;/h5&gt;
+&lt;p&gt;Sources:
+* &lt;a href="https://www.lemonde.fr/societe/article/2017/03/08/en-entreprise-une-femme-qui-parle-est-bavarde-un-homme-qui-parle-est-un-leader_5091245_3224.html"&gt;Le Monde&lt;/a&gt;
+* &lt;a href="https://time.com/3666135/sheryl-sandberg-talking-while-female-manterruptions/"&gt;Time Magazine&lt;/a&gt;
+* &lt;a href="https://antisexisme.net/2012/04/09/le-genre-et-lespace/"&gt;Antisexisme&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Temps de parole fixe, équilibré et chronométré pour les démos et les daily meetings. Pas d'interruption tolérée&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Une idée pour favoriser la prise d'espace par les personnes sous représentées?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5&gt;Inégalités dans l'attribution des tâches&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.physiology.org/doi/full/10.1152/advan.00085.2017"&gt;Journal Physiology&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Les femmes ont tendances à se sous-évaluer et les hommes sur surévaluer
+Dans le système d'attribution des tâches SCRUM, il est en partie lié à l'autoévaluation de ses capacités à faire la tâche:&lt;/p&gt;
+&lt;p&gt;ajout de point de handicap dans le système de poker pour les femmes&lt;/p&gt;
+&lt;h3&gt;Inégalité de positionnement des sachants/apprenants lors des sessions de peer coding/ formations internes&lt;/h3&gt;
+&lt;p&gt;Problème de mensplaining et de paternalisme lors des sessions de peer-coding aussi bien que des formations internes&lt;/p&gt;
+&lt;p&gt;Mise en place d'une alternance stricte et équilibrée des sessions&lt;/p&gt;
+&lt;h4&gt;Inégalité dans l'attribution des tâches&lt;/h4&gt;
+&lt;p&gt;Les taches de secrétariat et de vie au bureau attribuées plutôt aux femmes plutot qu'aux hommes&lt;/p&gt;
+&lt;p&gt;Mise en place d'un calendrier ou d'une alternance stricte de prise de note des réunions et de rédaction des log meetings&lt;/p&gt;
+&lt;h4&gt;Gestion du temps&lt;/h4&gt;
+&lt;h5&gt;Sessions de brainstorm&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Programmation des sessions de brainstorm à des heures adaptées et synchronisées pour tout le monde: s'assurer que tout le monde soit là et disponible mentalement&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Définir le rythme des itérations par cycle plus long et adapté au rythme personnel de son équipe &lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;Gestion de projet et évaluation du travail&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;En cas d'un conflit d'écriture du code:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Il n'est pas rare de voir des collègues masculins réécrire en entier le code de leur collègues feminins&lt;/p&gt;
+&lt;p&gt;Sources :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://workplace.stackexchange.com/questions/89058/another-programmer-keeps-rewriting-my-code"&gt;Sur Stackexchange&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.theguardian.com/lifeandstyle/2019/jan/22/colleague-nerdy-know-all-rewrites-my-work-what-should-i-do"&gt;The Guardian&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Définir une politique claire quand à la paternité et la responsabilité de chaque fonctionnalité, et quelles stratégies appliquer en cas de non respect des règles&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Attribution claire des responsabilités de chaque developpeur de l'équipe en amont: quelles features, quelles branches avec mention de paternité. &lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Explicitation auprès de l'équipe des choix de merge et rebases et de mise en production  par le responsable.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Explication des motivations du développeur à récrire le code&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;Reprise de la version originale (git revert)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Les systèmes de gestion de version permettent d'évaluer correctemment au caractère près l'historique exact et la paternité du code.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Evaluation du travail réalisé&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;L'erreur est jugé plus durement  si l'on est une femme que si l'on est un homme. Dans l'évaluation du travail réalisé, cette différence se sent aussi&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Grille claire avec mesures objectives de l'évaluation du code: appliquer les mêmes mesures à tout le monde.
+Il existe plein d'outils aujourd'hui pour de manière objective juger le travail et non pas la personne (corrections, hooks, tests, retour utilisateurs)&lt;/li&gt;
+&lt;/ul&gt;</content><category term="reflexions"></category><category term="féminin"></category><category term="management"></category><category term="dev"></category></entry></feed>
